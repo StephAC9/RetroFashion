@@ -1,10 +1,10 @@
 <template>
-  <div class="ManageShopping">
+  <div class="EditDeliveryAddress">
   </div>
 </template>
 <script>
 export default {
-    name:'ManageShopping'
+    name:'EditDeliveryAddress'
 }
 </script>
 <style scoped>
