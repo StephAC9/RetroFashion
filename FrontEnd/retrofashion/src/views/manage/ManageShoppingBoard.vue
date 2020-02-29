@@ -1,10 +1,10 @@
 <template>
-  <div class="ContactUs">
+  <div class="ManageShoppingBoard">
   </div>
 </template>
 <script>
 export default {
-    name:'ContactUs'
+    name:'ManageShoppingBoard'
 }
 </script>
 <style scoped>

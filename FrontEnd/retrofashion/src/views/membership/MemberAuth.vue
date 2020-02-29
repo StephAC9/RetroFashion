@@ -1,10 +1,10 @@
 <template>
-  <div class="SignIn">
+  <div class="MemberAuth">
   </div>
 </template>
 <script>
 export default {
-    name:'SignIn'
+    name:'MemberAuth'
 }
 </script>
 <style scoped>
