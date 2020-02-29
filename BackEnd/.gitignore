@@ -1,3 +1,5 @@
-/node_modules
+/Admins/node_modules
+/Admins/package-lock.json
+/Customers/node_modules
+/Customers/package-lock.json
 .env
-/package-lock.json
