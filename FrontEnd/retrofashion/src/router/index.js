@@ -1,66 +1,86 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import MemberBoard from '../views/membership/MemberBoard.vue'
-import MemberAuth from '../views/membership/MemberAuth.vue'
-import Payment from '../views/Home.vue'
-import Cart from '../views/Cart.vue'
-import ProductView from '../views/ProductView.vue'
+import Home from '../views/Home'
+import EditAccount from '../views/manage/EditAccount'
+import Account from '../views/membership/Account'
+import MemberAuth from '../views/membership/MemberAuth'
+import Cart from '../views/orders/Cart'
+import Products from '../views/products/Products'
+import ProductView from '../views/products/ProductView'
+import Payment1 from '../views/orders/Payment1'
+import Payment2 from '../views/orders/Payment2'
+import ChildrenProducts from '../views/products/categories/ChildrenProducts'
+import MenProducts from '../views/products/categories/MenProducts'
+import DamProducts from '../views/products/categories/DamProducts'
+import Rea from '../views/products/categories/Rea'
+import BestSellers from '../views/products/categories/BestSellers'
+//import Accessories from '../views/products/categories/subcategories/Accessories'
+import Clothes from '../views/products/categories/subcategories/Clothes'
+import Shoes from '../views/products/categories/subcategories/Shoes'
 
 Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
-        name: 'Home',
+        name: 'home',
+        component: Home
+    },
+    {
+        path: '/home',
+        name: 'home',
         component: Home
     },
     {
         path: '/about',
-        name: 'About',
+        name: 'about',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/About.vue')
+            import ( /* webpackChunkName: "about" */ '../views/ourCompany/About')
     },
     {
         path: '/contact',
         name: 'contact',
         component: () =>
-            import ('../views/About.vue')
+            import ('../views/ourCompany/Contact')
     },
     {
-        path: '/memberboard',
-        name: 'memberboard',
-        component: MemberBoard.vue
+        path: '/news',
+        name: 'news',
+        component: () =>
+            import ('../views/ourCompany/News')
+    },
+    {
+        path: '/account',
+        name: 'account',
+        component: Account,
+        children: [{
+            path: '/Edit',
+            name: '/edit',
+            component: EditAccount
+        }]
     },
     {
         path: '/signin',
         name: 'signin',
-        component: MemberAuth.vue
+        component: MemberAuth
     },
     {
         path: '/signup',
         name: 'signup',
         component: () =>
-            import ('../views/membership/MemberAuth.vue')
+            import ('../views/membership/MemberAuth')
     },
     {
-        path: '/shopping-manage-board',
-        name: 'manage-board',
-        component: () =>
-            import ('../views/manage/ManageShoppingBoard.vue')
+        path: '/payment-step-1',
+        name: 'payment1',
+        component: Payment1
     },
     {
-        path: '/edit-deliver-address',
-        name: 'edit-homeaddress',
-        component: () =>
-            import ('../views/manage/EditDeliveryAddress.vue')
-    },
-    {
-        path: '/payment',
-        name: 'payment',
-        component: Payment.vue
+        path: '/payment-step-2',
+        name: 'payment2',
+        component: Payment2
     },
     {
         path: '/cart',
@@ -71,6 +91,51 @@ const routes = [{
         path: '/product',
         name: 'product',
         component: ProductView
+    },
+    {
+        path: '/products',
+        name: 'products',
+        component: Products
+    },
+    {
+        path: '/clothes',
+        name: 'clothes',
+        component: Clothes
+    },
+    {
+        path: '/shoes',
+        name: 'shoes',
+        component: Shoes
+    },
+    /* {
+        path: '/accessories',
+        name: 'accessories',
+        component: Accessories
+    }, */
+    {
+        path: '/Dam',
+        name: 'dam',
+        component: DamProducts
+    },
+    {
+        path: '/Men',
+        name: 'men',
+        component: MenProducts
+    },
+    {
+        path: '/Children',
+        name: 'children',
+        component: ChildrenProducts
+    },
+    {
+        path: '/Best sellers',
+        name: 'bestsellers',
+        component: BestSellers
+    },
+    {
+        path: '/Rea',
+        name: 'rea',
+        component: Rea
     }
 ]
 
