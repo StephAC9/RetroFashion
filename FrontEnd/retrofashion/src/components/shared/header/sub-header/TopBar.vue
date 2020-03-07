@@ -44,7 +44,7 @@ export default {
       Popover
     },
     data: () => ({
-    items: true,
+    items: false,
     placement:'bottomleft',
   }),
 }

@@ -14,11 +14,7 @@ export default {
     BottomBar,
     TopBar
   },
-    data: () => ({
-    items: true,
-    placement:'bottomleft',
-  }),
- 
+    
 };
 </script>
 <style scoped>

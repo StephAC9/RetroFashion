@@ -12,9 +12,9 @@ import Payment2 from '../views/orders/Payment2'
 import ChildrenProducts from '../views/products/categories/ChildrenProducts'
 import MenProducts from '../views/products/categories/MenProducts'
 import DamProducts from '../views/products/categories/DamProducts'
-import Rea from '../views/products/categories/Rea'
+import Sales from '../views/products/categories/Sales'
 import BestSellers from '../views/products/categories/BestSellers'
-//import Accessories from '../views/products/categories/subcategories/Accessories'
+import Accessories from '../views/products/categories/subcategories/Accessories'
 import Clothes from '../views/products/categories/subcategories/Clothes'
 import Shoes from '../views/products/categories/subcategories/Shoes'
 
@@ -22,7 +22,6 @@ Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
-        name: 'home',
         component: Home
     },
     {
@@ -107,11 +106,11 @@ const routes = [{
         name: 'shoes',
         component: Shoes
     },
-    /* {
+    {
         path: '/accessories',
         name: 'accessories',
         component: Accessories
-    }, */
+    },
     {
         path: '/Dam',
         name: 'dam',
@@ -133,9 +132,9 @@ const routes = [{
         component: BestSellers
     },
     {
-        path: '/Rea',
-        name: 'rea',
-        component: Rea
+        path: '/sales',
+        name: 'sales',
+        component: Sales
     }
 ]
 

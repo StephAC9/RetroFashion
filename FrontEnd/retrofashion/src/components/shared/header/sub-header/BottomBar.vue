@@ -1,4 +1,5 @@
 <template>
+<div>
      <nav>
             <div class="nav-elements">
               <input type="checkbox" id="check">
@@ -7,28 +8,28 @@
               </label>         
               <ul>
                <li>
-                 <a href="/news">News</a>
+                  <a href="/news">News</a>
                </li>
                <li>
-                 <a href="/Dam">Dam</a>
+                 <a href="/Dam">Women</a>
                </li>
-               <li>
+               <li> 
                  <a href="/Men">Men</a>
                </li>
                <li>
                  <a href="/Children">Children</a>
                </li>
                <li>
-                 <a href="/shoes">Shoes</a>
+                 <a class="shoes" href="/shoes">Shoes</a>
                </li>
                <li>
                  <a href="/clothes">Clothes</a>
                </li>
                <li>
-                 <a href="#">Accessories</a>
+                 <a href="/accessories">Accessories</a>
                </li>
                <li>
-                 <a href="/rea">Rea</a>
+                 <a href="/sales">Sales</a>
                </li>
                <li>
                  <a href="/best sellers">Best sellers</a>
@@ -44,10 +45,17 @@
               </div> 
             </div>
     </nav>
+ </div>
 </template>
 <script>
 export default {
-    name:'bottom-bar'
+    name:'bottom-bar',
+    data(){
+      return{
+        items: true,
+      }
+    },
+   
 }
 </script>
 <style scoped>
@@ -74,6 +82,14 @@ export default {
         flex-basis: 30%;
     }
   }
-
+  .inferior-bar-women{
+    width: 100%;
+    height: 300px;
+    border-bottom: 1 solid black;
+    transition: .5s;
+    background: gray;
+    z-index: 2;
+}
+  
 </style>
 

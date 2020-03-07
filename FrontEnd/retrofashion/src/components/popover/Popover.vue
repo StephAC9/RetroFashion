@@ -30,6 +30,14 @@
             </div>
         </div>    
     </b-popover>
+    <b-popover
+    style="border-color:white"
+    v-if="layout == 'dam'"
+    :target="`popover-dam-${placement}`"
+    :placement="placement"
+    triggers="hover focus">
+    <div style="width:700px; height:300px;background:gray"></div>
+    </b-popover>
 
 </div>
         
