@@ -52,17 +52,67 @@ const RootQuery = new GraphQLObjectType({
         products: {
             type: type.ProductType,
             resolve: async(parent, args) => await Product.find({ status: 'opened' })
+        },
 
+        getMen_products: {
+            type: type.ProductType,
+            resolve: async(parent, args) => await Product.find({ productType: 'men' })
+        },
+        getWomen_products: {
+            type: type.ProductType,
+            resolve: async(parent, args) => await Product.find({ productType: 'women' })
+        },
+        getChildren_products: {
+            type: type.ProductType,
+            resolve: async(parent, args) => await Product.find({ productType: 'children' })
+        },
+        getShoes: {
+            type: type.ProductType,
+            resolve: async(parent, args) => {
+                const products = await Product.find({ status: 'opened' })
+                const shoes = await products.filter(p => !p.productCategories.includes('shoes'))
+                return shoes
+            }
+        },
+        getClothes: {
+            type: type.ProductType,
+            resolve: async(parent, args) => {
+                const products = await Product.find({ status: 'opened' })
+                const clothes = await products.filter(p => !p.productCategories.includes('clothes'))
+                return clothes
+            }
+        },
+        getAccessories: {
+            type: type.ProductType,
+            resolve: async(parent, args) => {
+                const products = await Product.find({ status: 'opened' })
+                const accessories = await products.filter(p => !p.productCategories.includes('accessories'))
+                return accessories
+            }
+        },
+        getSales: {
+            type: type.ProductType,
+            resolve: async(parent, args) => {
+                const products = await Product.find({ status: 'opened' })
+                const sales = []
+                await products.forEach(p => {
+                    if (p.productSalesPrice > 0) {
+                        sales.push(p)
+                    }
+                })
+                return sales
+            }
         },
 
         getCategory: {
             type: type.ProductType,
             args: {
-                categories: { type: new GraphQLList(GraphQLString) } // Because the filter could have one or more categories.
+                groupTarget: { type: GraphQLString }, //men-women-children
+                categories: { type: new GraphQLList(GraphQLString) } //List Because the filter could have one or more categories.
             },
             resolve: async(parent, args) => {
+                const products = await Product.find({ status: 'opened', productType: args.groupTarget })
                 const optionCategories = args.categories
-                const products = await Product.find({ status: 'opened' })
                 const searchedResult = []
 
                 await products.forEach(p => {
@@ -80,7 +130,7 @@ const RootQuery = new GraphQLObjectType({
             args: {
                 productName: { type: GraphQLString }
             },
-            resolve: async(parent, args) => await Product.find({ productName: args.productName })
+            resolve: async(parent, args) => await Product.find({ status: 'opened', productName: args.productName })
         },
 
         getCart: {
