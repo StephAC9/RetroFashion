@@ -104,6 +104,7 @@ const Mutation = new GraphQLObjectType({
             args: {
                 productName: { type: new GraphQLNonNull(GraphQLString) },
                 productImages: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) },
+                productType: { type: new GraphQLNonNull(GraphQLString) },
                 productCategories: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) },
                 productDescription: { type: GraphQLString },
                 productColor: { type: new GraphQLNonNull(GraphQLString) },
@@ -126,10 +127,12 @@ const Mutation = new GraphQLObjectType({
                     let product = new Product({
                         productName: args.productName,
                         productImages: args.productImages,
+                        productType: args.productType,
                         productCategories: args.productCategories,
                         productDescription: args.productDescription,
                         productColor: args.productColor,
                         productSize: args.productSize,
+                        productSalesPrice: 0,
                         productPrice: args.productPrice,
                         status: 'opened',
                         productEntryDate: `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`
@@ -147,6 +150,78 @@ const Mutation = new GraphQLObjectType({
                 }
             }
         },
+        setSingleProductReduction: {
+            type: type.ProductType,
+            args: {
+                productId: { type: new GraphQLNonNull(GraphQLID) },
+                reductionPourcentage: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve: async(parent, args, req) => {
+                /* if (!req.adminIsAuth) {
+                    throw new Error('Unauthenticated!');
+                } */
+                const product = await Product.findById(args.productId)
+                let reduction = parseInt(args.reductionPourcentage)
+                product.productSalesPrice = product.productPrice - ((product.productPrice / 100) * reduction)
+                return await product.save()
+            }
+        },
+        removeSingleProductReduction: {
+            type: type.ProductType,
+            args: {
+                productId: { type: new GraphQLNonNull(GraphQLID) },
+            },
+            resolve: async(parent, args, req) => {
+                /* if (!req.adminIsAuth) {
+                    throw new Error('Unauthenticated!');
+                } */
+                const product = await Product.findById(args.productId)
+                product.productSalesPrice = 0
+                return await product.save()
+            }
+        },
+        setGroupProductReduction: {
+            type: type.ProductType,
+            args: {
+                groupType: { type: new GraphQLNonNull(GraphQLString) },
+                productGroupName: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: async(parent, args, req) => {
+                if (!req.adminIsAuth) {
+                    throw new Error('Unauthenticated!');
+                }
+                let reduction = parseInt(args.reductionPourcentage)
+                const products = await Product.find({ productType: args.groupType })
+                await products.forEach(p => {
+                    if (p.productCategories.includes(args.productGroupName)) {
+                        p.productSalesPrice = (product.productPrice / 100) * reduction
+                        p.save()
+                    }
+                })
+                return products
+            }
+        },
+        removeGroupProductReduction: {
+            type: type.ProductType,
+            args: {
+                groupType: { type: new GraphQLNonNull(GraphQLString) },
+                productGroupName: { type: new GraphQLNonNull(GraphQLString) },
+                reductionPourcentage: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve: async(parent, args, req) => {
+                if (!req.adminIsAuth) {
+                    throw new Error('Unauthenticated!');
+                }
+                const products = await Product.find({ productType: args.groupType })
+                await products.forEach(p => {
+                    if (p.productCategories.includes(args.productGroupName)) {
+                        p.productSalesPrice = 0
+                        p.save()
+                    }
+                })
+                return products
+            }
+        },
 
         deleteProduct: {
             type: type.ProductType,
@@ -156,9 +231,9 @@ const Mutation = new GraphQLObjectType({
             resolve: async(parent, args, req) => {
                 const product = await Product.findById(args.productId)
                 const reviews = await Review.find({ productId: args.productId })
-                    /* if (!req.adminIsAuth) {
-                        throw new Error('errorMessage.unAuthenticated')
-                    } */
+                if (!req.adminIsAuth) {
+                    throw new Error('errorMessage.unAuthenticated')
+                }
 
                 Review.deleteMany({ productId: args.productId })
                 return await Product.remove(product)
@@ -170,9 +245,9 @@ const Mutation = new GraphQLObjectType({
                 productId: { type: new GraphQLNonNull(GraphQLID) }
             },
             resolve: async(parent, args, req) => {
-                /*  if (!req.adminIsAuth) {
-                     throw new Error('errorMessage.unAuthenticated')
-                 } */
+                if (!req.adminIsAuth) {
+                    throw new Error('errorMessage.unAuthenticated')
+                }
                 const product = await Product.findById(args.productId)
                 product.status = 'frozen'
                 return product.save()
@@ -184,9 +259,9 @@ const Mutation = new GraphQLObjectType({
                 reviewId: { type: new GraphQLNonNull(GraphQLID) }
             },
             resolve: async(parent, args, req) => {
-                /*  if (!req.adminIsAuth) {
-                     throw new Error('errorMessage.unAuthenticated')
-                 } */
+                if (!req.adminIsAuth) {
+                    throw new Error('errorMessage.unAuthenticated')
+                }
 
                 await Review.deleteOne({ id: args.reviewId }, function(err) {
                     if (err) return handleError(err);

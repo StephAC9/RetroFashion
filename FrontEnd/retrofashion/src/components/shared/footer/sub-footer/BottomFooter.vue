@@ -29,7 +29,8 @@ export default {
         font-family:Arial Black;
         color:white;
         text-align: center;
-        margin: 20px;        
+        margin: 20px;
+        cursor: pointer;        
     }
     .sm:hover{
         border-color: thistle;

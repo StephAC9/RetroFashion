@@ -27,7 +27,7 @@
             <div class="top-bottom">
                 <p style="font-size:13ps;display:block"><strong>CONTACT US</strong></p>
                 <a class="link" href="mailto:retrofashion@yahoo.com">retrofashion@yahoo.com</a><br>
-                <p>Call us: +4679907743</p>
+                <p>Call us: +46XXXXXXXXXX</p>
             </div>
             <div class="top-bottom">
                 <p style="font-size:13ps;display:block"><strong>OTHER</strong></p>

@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
     productName: String,
     productImages: [String],
-    productCategories: [String], //Clothes-Shoes-bags-lingerie-accessoiries...
+    productType: String, //Clothes-Shoes-accessoiries
+    productCategories: [String], //weather-occasion-accessoiries...
     productDescription: String, //details on material, production...
     productColor: String,
     productSize: String,
     productPrice: Number,
+    productSalesPrice: Number,
     status: String, // freezed or open
     productEntryDate: String
 });

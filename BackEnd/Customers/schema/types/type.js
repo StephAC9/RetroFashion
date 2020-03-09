@@ -64,11 +64,13 @@ const ProductType = new GraphQLObjectType({
         id: { type: GraphQLID },
         productName: { type: GraphQLString },
         productImages: { type: new GraphQLList(GraphQLString) },
+        productType: { type: GraphQLString },
         productCategories: { type: new GraphQLList(GraphQLString) },
         productDescription: { type: GraphQLString },
         productColor: { type: GraphQLString },
         productSize: { type: GraphQLString },
         productPrice: { type: GraphQLFloat },
+        productSalesPrice: { type: GraphQLFloat },
         productEntryDate: { type: GraphQLString },
         inStock: {
             type: new GraphQLList(StockType),
