@@ -5,7 +5,6 @@ import EditAccount from '../views/manage/EditAccount'
 import Account from '../views/membership/Account'
 import MemberAuth from '../views/membership/MemberAuth'
 import Cart from '../views/orders/Cart'
-import Products from '../views/products/Products'
 import ProductView from '../views/products/ProductView'
 import Payment1 from '../views/orders/Payment1'
 import Payment2 from '../views/orders/Payment2'
@@ -92,11 +91,6 @@ const routes = [{
         component: ProductView
     },
     {
-        path: '/products',
-        name: 'products',
-        component: Products
-    },
-    {
         path: '/clothes',
         name: 'clothes',
         component: Clothes
@@ -112,22 +106,22 @@ const routes = [{
         component: Accessories
     },
     {
-        path: '/Dam',
-        name: 'dam',
+        path: '/women',
+        name: 'women',
         component: DamProducts
     },
     {
-        path: '/Men',
+        path: '/men',
         name: 'men',
         component: MenProducts
     },
     {
-        path: '/Children',
+        path: '/children',
         name: 'children',
         component: ChildrenProducts
     },
     {
-        path: '/Best sellers',
+        path: '/best sellers',
         name: 'bestsellers',
         component: BestSellers
     },

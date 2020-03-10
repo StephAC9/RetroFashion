@@ -1,30 +1,41 @@
 <template>
-    <div>
-        <div class="container">
-            <div class="a"></div>
-            <div class="b">
-                <h1 style="text-align:center">Hello men page</h1>
-            </div>
-            <div class="a"></div>
-        </div>
-    </div>
+    <div class="products-container">
+     <div class="product" v-for="(product,index) in men_products" :key="index" v-bind:id="index">
+        <productItem :product = "product"></productItem> 
+     </div> 
+    </div> 
 </template>
 <script>
+import productItem from '../../../components/product/ProductItem'
+import {mapGetters} from 'vuex'
 export default {
-    
+  name:'MenProducts',
+  components:{
+      productItem
+  } ,
+  computed:{
+    ...mapGetters(['men_products'])
+  },
+  created(){
+    this.$store.dispatch('fetchMenProducts')
+  }
+
 }
 </script>
 <style scoped>
-    .container{
+    .products-container{
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding: 4px;
     }
-    .a{
-        flex-basis: 5%;
-        height: 1000px;
+    .product{
+        flex-basis: 20%;
+        min-width: 250px;
+        height: 420px;
     }
-    .b{
-        flex-basis: 90%;
-        background: beige;
-        height: 1000px;
+    .product:hover{
+        border: 0.5px solid rgb(240, 234, 234)
     }
+   
 </style>

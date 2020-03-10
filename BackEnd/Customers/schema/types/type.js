@@ -80,14 +80,6 @@ const ProductType = new GraphQLObjectType({
             type: new GraphQLList(ReviewType),
             resolve: async(parent, args) => await Review.find({ productId: parent.id })
         },
-        productVariants: { // return same products avalaible with different color
-            type: new GraphQLList(ProductType),
-            async resolve(parent, args) {
-                const sameProducts = await Product.find({ productName: parent.productName })
-                const variants = await sameProducts.filter(p => p.productColor !== parent.productColor)
-                return variants
-            }
-        },
         productAlternativeColors: { // return available alternative colors of the product
             type: new GraphQLList(ProductType),
             args: { id: { type: GraphQLID } },

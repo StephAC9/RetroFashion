@@ -1,5 +1,5 @@
+/* import createPersistedState from 'vuex-persistedstate'
 import axios from 'axios'
-import createPersistedState from 'vuex-persistedstate'
 import router from '../../router'
 
 
@@ -32,4 +32,4 @@ export default {
     getters,
     actions,
     mutations
-}
+} */

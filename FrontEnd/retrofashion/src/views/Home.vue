@@ -98,8 +98,17 @@
 </template>
 
 <script>
+//import {mapGetters} from 'vuex'
 export default {
   name: 'Home',
+  created(){
+    this.$store.dispatch('fetchWomenProducts')
+    this.$store.dispatch('fetchMenProducts')
+    this.$store.dispatch('fetchClothesProducts')
+    this.$store.dispatch('fetchShoesProducts')
+    this.$store.dispatch('fetchProductsOnSales')
+    this.$store.dispatch('fetchAccessories')
+  }
 }
 </script>
 <style  scoped>
@@ -129,15 +138,18 @@ export default {
     background-size: 100%;
     background-image: url('../../../Images/fix-images/7638fc6e0c3c3b7d1dc7971e7b11345c.jpg');
     background-repeat: no-repeat;
+    z-index: 0;
   }
   .img2-carrousel{
     cursor: pointer;
     background-size: 100%;
     background-repeat: no-repeat;
+    z-index: 0;
     background-image: url('../../../Images/fix-images/c5d9c2_7b584c595cf14efca1f5b27188d15c8f.jpg');
   }
   .img3-carrousel{
     cursor: pointer;
+    z-index: 0;
     background-size: 100%;
     background-repeat: no-repeat;
     background-image: url('../../../Images/fix-images/7abc126c9bae21e6d2942b46b0d20fc9.jpg');

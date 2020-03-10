@@ -1,7 +1,8 @@
-import axios from 'axios'
-import createPersistedState from 'vuex-persistedstate'
-import router from '../../router'
-export default {
+//import createPersistedState from 'vuex-persistedstate'
+/* import axios from 'axios'
+import router from '../../router' */
+
+/* export default {
     namespaced: true,
     plugins: [
         createPersistedState()
@@ -10,4 +11,4 @@ export default {
     getters,
     actions,
     mutations
-}
+} */

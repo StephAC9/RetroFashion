@@ -98,12 +98,12 @@ const RootQuery = new GraphQLObjectType({
         },
         products: {
             type: new GraphQLList(type.ProductType),
-            resolve: async(parent, args) => {
+            resolve: async(parent, args) => await Product.find({})
                 /*  if (!req.adminIsAuth) {
                        throw new Error(errorMessage.unAuthenticated)
                    } */
-                return await Product.find({})
-            }
+                /*     return await Product.find({})
+                } */
         },
         allProducts: {
             type: new GraphQLList(type.ProductType),

@@ -1,6 +1,6 @@
+/* import createPersistedState from 'vuex-persistedstate'
 import axios from 'axios'
-import createPersistedState from 'vuex-persistedstate'
-import router from '../../router'
+import router from '../../router' 
 
 
 const state = {
@@ -30,4 +30,4 @@ export default {
     getters,
     actions,
     mutations
-}
+} */
