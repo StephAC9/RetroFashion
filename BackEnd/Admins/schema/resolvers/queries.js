@@ -193,6 +193,24 @@ const RootQuery = new GraphQLObjectType({
             resolve: async(parent, args) => await Category.find({})
         },
 
+        loadCategories: {
+            type: type.ProductType,
+            args: {
+                categoryName: { type: GraphQLString }
+            },
+            resolve: async(parent, args) => {
+                const products = await Product.find({})
+                const productList = []
+                await products.forEach(p => {
+                    if (p.productCategories.includes(args.categoryName)) {
+                        productList.push(p)
+                    }
+                })
+                console.log('ProductList: Test', productList)
+                return await productList
+            }
+        }
+
     }
 })
 

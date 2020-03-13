@@ -185,22 +185,25 @@ const Mutation = new GraphQLObjectType({
             args: {
                 groupType: { type: new GraphQLNonNull(GraphQLString) },
                 productGroupName: { type: new GraphQLNonNull(GraphQLString) },
+                reductionPourcentage: { type: new GraphQLNonNull(GraphQLString) }
             },
             resolve: async(parent, args, req) => {
-                if (!req.adminIsAuth) {
+                /* if (!req.adminIsAuth) {
                     throw new Error('Unauthenticated!');
-                }
+                } */
                 let reduction = parseInt(args.reductionPourcentage)
                 const products = await Product.find({ productType: args.groupType })
+                console.log(products)
                 await products.forEach(p => {
                     if (p.productCategories.includes(args.productGroupName)) {
                         p.productSalesPrice = (product.productPrice / 100) * reduction
-                        p.save()
                     }
                 })
-                return products
+
+                return products.save()
             }
         },
+
         removeGroupProductReduction: {
             type: type.ProductType,
             args: {
@@ -283,7 +286,7 @@ const Mutation = new GraphQLObjectType({
                 })
                 return category.save()
             }
-        }
+        },
 
     }
 })

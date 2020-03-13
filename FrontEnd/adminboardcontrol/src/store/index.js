@@ -13,7 +13,8 @@ export default new Vuex.Store({
         members: [],
         admins: [],
         reviews: [],
-        orders: []
+        orders: [],
+        sales: []
     },
     getters: {
         products: state => state.products
@@ -166,6 +167,36 @@ export default new Vuex.Store({
                 console.log(err)
             }
         },
+        async applyGroupReduction({ commit }, payload) {
+            console.log(payload)
+            try {
+                const products = await axios({
+                    method: 'POST',
+                    url: 'http://localhost:4200/graphql',
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('token')
+                    },
+                    data: {
+                        query: `mutation setGroupProductReduction($groupType: String!,$productGroupName: String!,$reductionPourcentage: String!){
+                        setGroupProductReduction(groupType: $groupType,productGroupName:$productGroupName,reductionPourcentage:$reductionPourcentage){
+                            id
+                            productName
+                        }             
+                    }`,
+                        variables: {
+                            groupType: payload.groupType,
+                            productGroupName: payload.groupName,
+                            reductionPourcentage: payload.reductionPourcentage
+                        }
+                    },
+                })
+                const productsList = products.data.data.setGroupProductReduction
+                console.log(productsList)
+                commit('SALES_PRODUCTS', productsList)
+            } catch (err) {
+                console.log(err)
+            }
+        },
     },
     mutations: {
         SET_TOKEN: (state, payload) => state.token = payload,
@@ -174,5 +205,6 @@ export default new Vuex.Store({
         FREEZE_PRODUCT: (state, payload) => {
             state.products.filter(p => p.id !== payload)
         },
+        SALES_PRODUCTS: (state, payload) => state.sales = payload
     }
 })

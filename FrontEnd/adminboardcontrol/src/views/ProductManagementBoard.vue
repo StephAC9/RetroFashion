@@ -156,12 +156,25 @@
               <b-button @click="save" size="lg">SAVE PRODUCT</b-button>
           </div><hr>
           <div style="height:50px"></div>
-          <div class="head" style="margin:30px"><h1 style="text-align:center; padding:5px;">REMOVE A PRODUCT</h1></div>
+          <div class="head" style="margin:30px"><h1 style="text-align:center; padding:5px;">VIEW PRODUCTS</h1></div>
           <div class="products-container">
             <div class="product" v-for="(product,index) in products" :key="index" v-bind:id="index">
                <productItem :product = "product"></productItem> 
             </div> 
-          </div> 
+          </div>
+           <div class="head" style="margin:30px"><h1 style="text-align:center; padding:5px;">APPLY REDUCTION TO GROUP OF PRODUCTS</h1></div>
+           <div>
+             <input class="reducInput" v-model="productGroupType" type="text" placeholder="Enter category type">
+           </div>
+           <div>
+             <input class="reducInput" v-model="productGroupName" type="text" placeholder="Enter category name" >
+           </div>
+           <div>
+             <input class="reducInput" v-model="reductionPourcentage" type="text" placeholder="Enter reduction %" >
+           </div>
+           <div>
+             <button @click="setGroupReduction">Apply</button>
+           </div>
           <div style="height:200px"></div>
   </div>
 </template>
@@ -176,6 +189,9 @@ export default {
   },
   data(){
     return{
+      productGroupType:'',
+      productGroupName:'',
+      reductionPourcentage:'',
       tofavorites: false,
       first: true,
       image:'',
@@ -400,6 +416,17 @@ export default {
             images: this.images
         }) 
     },
+    setGroupReduction(){
+      console.log(this.productGroupName)
+      console.log(this.productGroupType)
+      console.log(this.reductionPourcentage)
+      this.$store.dispatch('applyGroupReduction',
+      {
+        groupName: this.productGroupName,
+        groupType: this.productGroupType,
+        reductionPourcentage: this.reductionPourcentage
+      })
+    }
  
   }
 }
@@ -451,4 +478,8 @@ export default {
   .addedToFav{
     color:rgb(247, 8, 48);
   } 
+  .reducInput{
+    width: 40%;
+    height: 70px;
+  }
 </style>

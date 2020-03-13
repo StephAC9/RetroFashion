@@ -1,11 +1,9 @@
 <template>
      <div class="product-container">
-               <div @mouseover="first = !first" @mouseleave="first = true">
-                 <!-- <div class="cercle">30</div> -->
-            <!-- <div class="image" v-if="first" v-bind:style="{ 'background-image': url(`../../../../Images/${product.productImages[0]}`) }"></div>
-                 <div class="image" v-if="!first" v-bind:style="{ backgroundImage: 'url(' + require(`../../../../Images/${product.productImages[1]}`) + ')' }"></div> -->
+               <div class="img-container" @mouseover="first = !first" @mouseleave="first = true">
                   <img style="width: 100%; height:100%;" v-if="first" :src="require(`../../../../Images/${product.productImages[0]}`)" alt="img">  
-                  <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">    
+                  <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">
+                  <div class="cercle">-30</div>      
                </div>
                 <div style="margin-top:10px;height:70px">
                     <p style="margin:0 auto;font-size:13px; text-align:start;font-weight:bold"> {{product.productName}}</p>
@@ -134,6 +132,21 @@ export default {
   height:100%;
   background-size: 100%;
   z-index: 0;
+}
+.img-container{
+  position: relative;
+}
+.cercle{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: aquamarine;
+  position: absolute;
+  font-size: 15px;
+  font-weight: bold;
+  top: 1px;
+  text-align: center;
+  padding-top: 12px;
 }
 
 </style>
