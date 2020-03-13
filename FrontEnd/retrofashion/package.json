@@ -18,6 +18,7 @@
     "vue-axios": "^2.1.5",
     "vue-persistent-state": "^0.2.1",
     "vue-router": "^3.1.5",
+    "vue-select": "^3.9.0",
     "vuex": "^3.1.2",
     "vuex-persistedstate": "^2.7.1"
   },
