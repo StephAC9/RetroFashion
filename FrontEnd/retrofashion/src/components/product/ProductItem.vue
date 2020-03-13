@@ -7,7 +7,7 @@
                   <img style="width: 100%; height:100%;" v-if="first" :src="require(`../../../../Images/${product.productImages[0]}`)" alt="img">  
                   <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">    
                </div>
-                <div style="margin-top:10px">
+                <div style="margin-top:10px;height:70px">
                     <p style="margin:0 auto;font-size:13px; text-align:start;font-weight:bold"> {{product.productName}}</p>
                 </div>
                <div class="bottom">
@@ -63,7 +63,8 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
-      padding: 4px;
+      padding: 2px;
+      padding-bottom: 10px;
     }
 .product{
   flex-basis: 20%;
@@ -103,7 +104,6 @@ export default {
   border:none
 }
 .bottom{
-  margin-top: 20px;
   width: 100%;
   text-align:center; 
   display:flex; 
