@@ -1,9 +1,6 @@
 <template>
      <div class="product-container">
                <div @mouseover="first = !first" @mouseleave="first = true">
-                 <!-- <div class="cercle">30</div> -->
-            <!-- <div class="image" v-if="first" v-bind:style="{ 'background-image': url(`../../../../Images/${product.productImages[0]}`) }"></div>
-                 <div class="image" v-if="!first" v-bind:style="{ backgroundImage: 'url(' + require(`../../../../Images/${product.productImages[1]}`) + ')' }"></div> -->
                   <img style="width: 100%; height:100%;" v-if="first" :src="require(`../../../../Images/${product.productImages[0]}`)" alt="img">  
                   <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">    
                </div>

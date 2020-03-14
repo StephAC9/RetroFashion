@@ -12,9 +12,10 @@ export default new Vuex.Store({
 import Vuex from 'vuex'
 import Vue from 'vue'
 import router from '../router'
-import men_product from './modules/men_product'
-import women_product from './modules/women_product'
-/*import children_product from './modules/children_product'
+import men from './modules/men'
+import women from './modules/women'
+import layouts from './modules/layouts'
+/*import children from './modules/children'
 import accessories from './modules/accessories'
 import member from './modules/member' */
 import createPersistedState from 'vuex-persistedstate'
@@ -28,9 +29,10 @@ export default new Vuex.Store({
         createPersistedState()
     ],
     modules: {
-        men_product,
-        women_product,
-        /* children_product,
+        men,
+        women,
+        layouts,
+        /* children,
         accessories,
         member */
     },
