@@ -2,11 +2,11 @@
   <div>
     <Header></Header>      
     <section class="main-container">
-      <div class="left-row"></div>
+       <div class="left-row"></div>
       <div class="center-row">
         <router-view/>
-      </div>
-      <div class="right-row"></div>
+       </div>
+      <div class="right-row"></div> 
     </section> 
     <Footer></Footer>
   </div>
@@ -21,7 +21,10 @@ export default {
     Header,
     Footer
   },
-   data: () => ({
+  computed:{
+
+  },
+  data: () => ({
    
   }), 
  

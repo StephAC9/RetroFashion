@@ -1,17 +1,16 @@
 import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
-//import router from '../../router'
 
 
 const state = {
-    women_products: [],
-    women_shoes: [],
-    women_clothes: [],
+    products: [],
+    shoes: [],
+    clothes: [],
 }
 const getters = {
-    women_products: state => state.women_products,
-    women_shoes: state => state.women_products.filter(product => !product.productCategories.includes('Shoes')),
-    women_clothes: state => state.women_products.filter(product => !product.productCategories.includes('Clothes')),
+    products: state => state.products,
+    shoes: state => state.products.filter(product => !product.productCategories.includes('Shoes')),
+    clothes: state => state.products.filter(product => !product.productCategories.includes('Clothes')),
 }
 const actions = {
     async fetchWomenProducts({ commit }) {
@@ -42,18 +41,19 @@ const actions = {
             })
             const womenProductList = womenProducts.data.data.getWomen_products
             console.log(womenProductList)
-            commit('SET_WOMEN_PRODUCTS', womenProductList)
+            commit('SET_PRODUCTS', womenProductList)
         } catch (err) {
             console.log(err)
         }
     },
 }
 const mutations = {
-    SET_WOMEN_PRODUCTS: (state, payload) => state.women_products = payload
+    SET_PRODUCTS: (state, payload) => state.products = payload
 }
 
 
 export default {
+    namespaced: true,
     plugins: [
         createPersistedState()
     ],

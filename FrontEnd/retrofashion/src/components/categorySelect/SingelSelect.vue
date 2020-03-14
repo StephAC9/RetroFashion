@@ -2,6 +2,7 @@
   <div id="selectCategory">
     <h1>{{ categoryName }}</h1>
     <v-select
+      style="width:100%"
       v-model="selected"
       :options="options"
       :checkboxed="true"
@@ -43,11 +44,11 @@ h1,
 }
 
 h1 {
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #selectCategory {
-  max-width: 25%;
+  width: 100%;
 }
 </style>
