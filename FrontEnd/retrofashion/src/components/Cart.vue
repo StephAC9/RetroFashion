@@ -6,14 +6,7 @@
         </div>
         <table v-else class="table table-striped mb-5">
           <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Product</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Delete</th>
-              <th scope="col">Total</th>
-            </tr>
+          
           </thead>
           <tbody>
             <tr v-for="(product, index) in cart" :key="product.id">

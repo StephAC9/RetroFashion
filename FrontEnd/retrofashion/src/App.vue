@@ -1,55 +1,45 @@
-<template>
-  <div>
-    <Header></Header>      
-    <section class="main-container">
-       <div class="left-row"></div>
-      <div class="center-row">
-        <router-view/>
-       </div>
-      <div class="right-row"></div> 
-    </section> 
-    <Footer></Footer>
-  </div>
- </template>
+<template> 
+    <div>
+  	     <navbar></navbar>
+  		    <products></products>
+  		    
+  		    <cart></cart>
+  		    
+  		    <toast :show="toast.show" :text="toast.text" @hide-toast="hideToast"></toast>
+  	 </div>  
+</template>
 
 <script>
-import Header from './components/shared/header/Header'
-import Footer from './components/shared/footer/Footer'
-export default {
-  name: 'App',
-  components:{
-    Header,
-    Footer
-  },
-  computed:{
-
-  },
-  data: () => ({
-   
-  }), 
- 
-}
+    import Navbar from './components/Navbar.vue'
+    import Products from './components/Products.vue'
+    import Cart from './components/Cart.vue'
+    import Toast from './components/Toast.vue'
+    
+  	  export default {
+  		     data(){
+  			        return{
+  			
+  			        };
+  		      },
+  		      components:{
+  			        Navbar,
+  			        Products,
+  			        Cart,
+  			        Toast
+  		      },
+  		      computed: {
+  		          toast() {
+  		              return this.$store.getters.toast;
+  		          }
+  		      },
+  		      methods: {
+  		          hideToast() {
+  		              this.$store.commit("hideToast");
+  		          }
+  		      }
+ 	    }   
 </script>
+
 <style scoped>
-  body{
-    font-family: montserrat;
-  }
-  .main-container{
-    display:flex;
-  }
-  .left-row,.right-row{
-    flex-basis: 5%;
-  }
-  .center-row{
-    flex-basis: 90%;
-  }
-   @media (max-width: 850px) {
-    .left-row,.right-row{
-      flex-basis: 0%;
-    }
-    .center-row{
-      flex-basis: 100%;
-    }
-  }
 
 </style>
