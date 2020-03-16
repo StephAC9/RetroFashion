@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\FrontEnd",
+    "\\FrontEnd\\retrofashion",
+    "\\FrontEnd\\retrofashion\\src",
+    "\\FrontEnd\\retrofashion\\src\\components",
+    "\\FrontEnd\\retrofashion\\src\\components\\mainboard",
+    "\\FrontEnd\\retrofashion\\src\\components\\Modals",
+    "\\FrontEnd\\retrofashion\\src\\components\\payment",
+    "\\FrontEnd\\retrofashion\\src\\views",
+    "\\FrontEnd\\retrofashion\\src\\views\\products",
+    "\\FrontEnd\\retrofashion\\src\\views\\products\\categories"
+  ],
+  "SelectedNode": "\\FrontEnd\\retrofashion\\src\\App.vue",
+  "PreviewInSolutionExplorer": false
+}
