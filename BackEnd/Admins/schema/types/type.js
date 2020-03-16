@@ -75,6 +75,7 @@ const ProductType = new GraphQLObjectType({
         id: { type: GraphQLID },
         productName: { type: GraphQLString },
         productImages: { type: new GraphQLList(GraphQLString) },
+        productTargetedGroup: { type: GraphQLString },
         productType: { type: GraphQLString },
         productCategories: { type: new GraphQLList(GraphQLString) },
         productDescription: { type: GraphQLString },
@@ -82,6 +83,7 @@ const ProductType = new GraphQLObjectType({
         productSize: { type: GraphQLString },
         productPrice: { type: GraphQLFloat },
         productSalesPrice: { type: GraphQLFloat },
+        productOnSales: { type: GraphQLString },
         status: { type: GraphQLString },
         productEntryDate: { type: GraphQLString },
         stock: {

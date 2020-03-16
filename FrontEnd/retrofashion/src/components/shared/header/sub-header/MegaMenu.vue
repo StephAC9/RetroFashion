@@ -1,37 +1,25 @@
 <template>
     <div>
-        <div id="d" class="dropdown-content" v-if="layout == 'media'">
-           <div class="row">
-             <div class="column">
-                <h4>Menu</h4>
-                <a href="/women">Women</a>
-                <a href="/men">Men</a>
-                <a href="/children">Children</a>
-                <a href="/clothes">Clothes</a>
-                <a href="/shoes">Shoes</a>
-                <a href="/accessories">Accessories</a>
-            </div>
-          </div>
-        </div>
-        <div class="dropdown-content" v-if="layout == 'women'">
+       <div class="dropdown-content" v-if="layout == 'women'">
                         <div class="row">
                         <div class="column">
                             <h4>Clothes</h4>
-                            <a href="#">Dresses</a>
-                            <a href="#">Tops</a>
-                            <a href="#">Squirts</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Clothes')">All clothes</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Dresses')">Dresses</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Tops')">Tops</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Skirts')">Skirts</a>
                         </div>
                         <div class="column">
                             <h4>Shoes</h4>
-                            <a href="#">Sneakers</a>
-                            <a href="#">Boots</a>
-                            <a href="#">Heels</a>
-                            <a href="#">Sandals</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Shoes')">All shoes</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Sneakers')">Sneakers</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Boots')">Boots</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Heels')" >Heels</a>
                         </div>
                         <div class="column">
                             <h4>Wedding</h4>
-                            <a href="#">Wedding dresses</a>
-                            <a href="#">Wedding guest</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Wedding')">Wedding</a>
+                            <a class="link" @click="fetchSingleCategoryForWomen('Wedding guest')" >Wedding guest</a>
                         </div>
                         </div>
             </div>
@@ -39,21 +27,23 @@
                         <div class="row">
                         <div class="column">
                             <h4>Clothes</h4>
-                            <a href="#">Dresses</a>
-                            <a href="#">Tops</a>
-                            <a href="#">Squirts</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Clothes')">All clothes</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Suits')">Suits</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('T-shirts')">T-shirts</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Trousers')">Trousers</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Jackets')">Jackets</a>
                         </div>
                         <div class="column">
                             <h4>Shoes</h4>
-                            <a href="#">Sneakers</a>
-                            <a href="#">Boots</a>
-                            <a href="#">Heels</a>
-                            <a href="#">Sandals</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Shoes')">All shoes</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Sneakers')">Sneakers</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Business shoes')">Business shoes</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Outdoors')">Outdoors</a>
                         </div>
                         <div class="column">
                             <h4>Wedding</h4>
-                            <a href="#">Wedding dresses</a>
-                            <a href="#">Wedding guest</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Wedding')">Wedding</a>
+                            <a class="link" @click="fetchSingleCategoryForMen('Wedding guest')">Wedding guest</a>
                         </div>
                         </div>
             </div>
@@ -61,16 +51,16 @@
                         <div class="row">
                         <div class="column">
                             <h4>Clothes</h4>
-                            <a href="#">Dresses</a>
-                            <a href="#">Tops</a>
-                            <a href="#">Squirts</a>
+                            <a class="link" href="#">Dresses</a>
+                            <a class="link" href="#">Tops</a>
+                            <a class="link" href="#">Squirts</a>
                         </div>
                         <div class="column">
                             <h4>Shoes</h4>
-                            <a href="#">Sneakers</a>
-                            <a href="#">Boots</a>
-                            <a href="#">Heels</a>
-                            <a href="#">Sandals</a>
+                            <a class="link" href="#">Sneakers</a>
+                            <a class="link" href="#">Boots</a>
+                            <a class="link" href="#">Heels</a>
+                            <a class="link" href="#">Sandals</a>
                         </div>
                     </div>
             </div>
@@ -78,9 +68,9 @@
                         <div class="row">
                         <div class="column">
                             <h4>Shoes</h4>
-                            <a href="#">Women</a>
-                            <a href="#">Men</a>
-                            <a href="#">Children</a>
+                            <a class="link" href="#">Women</a>
+                            <a class="link" href="#">Men</a>
+                            <a class="link" href="#">Children</a>
                         </div>
                     </div>
             </div>
@@ -88,9 +78,9 @@
                         <div class="row">
                         <div class="column">
                             <h4>Groups</h4>
-                            <a href="#">Women</a>
-                            <a href="#">Men</a>
-                            <a href="#">Children</a>
+                            <a class="link" href="#">Women</a>
+                            <a class="link" href="#">Men</a>
+                            <a class="link" href="#">Children</a>
                         </div>
                         </div>
             </div>
@@ -98,10 +88,11 @@
                 <div class="row">
                  <div class="column">
                             <h4>Accessories</h4>
-                            <a href="#">Bags</a>
-                            <a href="#">Watches</a>
-                            <a href="#">Jewelries</a>
-                            <a href="#">others</a>
+                            <a class="link" @click="fetchSingleCategoryForAccessories('Bags')" >Bags</a>
+                            <a class="link" @click="fetchSingleCategoryForAccessories('Hats')" >Hats</a>
+                            <a class="link" @click="fetchSingleCategoryForAccessories('Sunglasses')">Sunglasses</a>
+                            <a class="link" @click="fetchSingleCategoryForAccessories('Watches')">Watches</a>
+                            <a class="link" @click="fetchSingleCategoryForAccessories('Jewelries')">Jewelries</a>
                  </div>
                 </div>
             </div>
@@ -115,6 +106,23 @@ export default {
       return{
       }
     },
+    methods:{
+         fetchSingleCategoryForMen(selectedCategory){
+            this.$store.dispatch("men/fetchSingleCategory",{selectedCategory:selectedCategory})
+        },
+        fetchSingleCategoryForWomen(selectedCategory){
+            console.log(selectedCategory)
+            this.$store.dispatch("women/fetchSingleCategory",{selectedCategory: selectedCategory})
+        },
+        fetchSingleCategoryForAccessories(selectedCategory){
+            console.log(selectedCategory)
+            this.$store.dispatch("women/fetchSingleCategory",{selectedCategory: selectedCategory})
+        },
+        fetchSingleCategoryForChildren(selectedCategory){
+            console.log(selectedCategory)
+            this.$store.dispatch("children/fetchSingleCategory",{selectedCategory: selectedCategory})
+        }, 
+    }
    
 }
 </script>
@@ -150,7 +158,7 @@ export default {
     box-shadow: 0px 8px 16px 0px rgba(63, 61, 61, 0.2);
     z-index: 1;
     top:32px;
-    width: 400px;
+    width: 450px;
     margin-right: 30px;
     background: #f8f9fa;
     border-radius: 5px;
@@ -194,6 +202,9 @@ export default {
     .column{
         text-align: center;
     } 
+    .link{
+        cursor: pointer;
+    }
 </style>
 
 

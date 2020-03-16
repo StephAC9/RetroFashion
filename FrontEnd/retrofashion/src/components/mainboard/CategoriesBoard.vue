@@ -1,12 +1,24 @@
 <template>
   <div class="CategoriesBoard">
+    <div class="category-items" v-for="(category,index) in categories" :key="index" v-bind:id="index">
+      <CategoryItem :category="category"></CategoryItem>
+     </div> 
   </div>
 </template>
 <script>
+
+import CategoryItem from './CategoryItem'
 export default {
-    name:'CategoriesBoard'
+    name:'CategoriesBoard',
+    props:['categories'],
+    components:{
+      CategoryItem
+    }
 }
 </script>
 <style scoped>
+  .category-items{
+    display:flexbox
+  }
 
 </style>
