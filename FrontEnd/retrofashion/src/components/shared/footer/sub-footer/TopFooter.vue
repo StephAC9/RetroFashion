@@ -13,12 +13,20 @@
                 </div>
             </div>
             <div class="right-top-footer"></div>
+        </div>
+        <div style="text-align:center">
+            <div class="nav-icon">
+                <button>
+                    <i class='fa fa-gratipay' style="color:white;font-size:30px"></i>
+                </button>
+                <div class="desciption" style="color:white">Favorites</div>
+            </div>
         </div> 
          <div class="footer-top-bottom">
-            <div class="top-bottom">
+             <div class="top-bottom">
                 <p style="font-size:13ps; display:block"><strong>HELP?</strong></p>
                 <a class="link" href="#">FaQ</a>
-            </div>
+                </div>
             <div class="top-bottom">
                 <p style="font-size:13ps;display:block"><strong>ABOUT US</strong></p>
                 <a class="link" href="#">Retrofashion</a><br>
@@ -61,7 +69,13 @@ export default {
     .center-top-footer{
         flex-basis: 50%;
     }
+    .nav-icon{
+        display: none;
+    }
     @media (max-width: 650px) {
+        .nav-icon{
+        display: block;
+    }
         .left-top-footer,.right-top-footer{
         flex-basis: 0%;
     }

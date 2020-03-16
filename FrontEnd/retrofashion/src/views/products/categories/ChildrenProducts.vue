@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Products :products="children_products"></Products>
+    <Products :groupType="groupType" :products="products" :categories="menPagecategories"></Products>
   </div>
 </template>
 <script>
@@ -8,15 +8,23 @@
 import Products from '../../../components/product/Products'
 import {mapGetters} from 'vuex'
 export default {
-   name:'ChildrenProducts',
+   name:'MenProducts',
    components:{
      Products
   },
+  data(){
+    return{
+      groupType:'Children',
+    }
+  },
   computed:{
-    ...mapGetters(['children_products'])
+    ...mapGetters('children',['products']),
+    ...mapGetters('layouts',['isChildrenPage']),
+    ...mapGetters('categories',['childrenPagecategories'])
   },
   beforeCreate(){
-    this.$store.dispatch('fetchChildrenProducts')
+    this.$store.dispatch('children/fetchChildrenProducts')
+    this.$store.dispatch('layouts/inChildrenPage')
   }
     
 }

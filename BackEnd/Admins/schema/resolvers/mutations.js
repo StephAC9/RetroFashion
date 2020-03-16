@@ -104,6 +104,7 @@ const Mutation = new GraphQLObjectType({
             args: {
                 productName: { type: new GraphQLNonNull(GraphQLString) },
                 productImages: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) },
+                productTargetedGroup: { type: new GraphQLNonNull(GraphQLString) },
                 productType: { type: new GraphQLNonNull(GraphQLString) },
                 productCategories: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) },
                 productDescription: { type: GraphQLString },
@@ -127,6 +128,7 @@ const Mutation = new GraphQLObjectType({
                     let product = new Product({
                         productName: args.productName,
                         productImages: args.productImages,
+                        productTargetedGroup: args.productTargetedGroup,
                         productType: args.productType,
                         productCategories: args.productCategories,
                         productDescription: args.productDescription,
@@ -134,7 +136,8 @@ const Mutation = new GraphQLObjectType({
                         productSize: args.productSize,
                         productSalesPrice: 0,
                         productPrice: args.productPrice,
-                        status: 'opened',
+                        productOnSales: 'No',
+                        status: 'Opened',
                         productEntryDate: `${new Date().toDateString()} ${new Date().toLocaleTimeString()}`
                     })
 
@@ -163,6 +166,7 @@ const Mutation = new GraphQLObjectType({
                 const product = await Product.findById(args.productId)
                 let reduction = parseInt(args.reductionPourcentage)
                 product.productSalesPrice = product.productPrice - ((product.productPrice / 100) * reduction)
+                product.productOnSales = 'Yes'
                 return await product.save()
             }
         },
@@ -177,6 +181,7 @@ const Mutation = new GraphQLObjectType({
                 } */
                 const product = await Product.findById(args.productId)
                 product.productSalesPrice = 0
+                product.productOnSales = 'No'
                 return await product.save()
             }
         },
@@ -185,20 +190,22 @@ const Mutation = new GraphQLObjectType({
             args: {
                 groupType: { type: new GraphQLNonNull(GraphQLString) },
                 productGroupName: { type: new GraphQLNonNull(GraphQLString) },
+                reductionPourcentage: { type: new GraphQLNonNull(GraphQLString) }
             },
             resolve: async(parent, args, req) => {
-                if (!req.adminIsAuth) {
-                    throw new Error('Unauthenticated!');
-                }
+                /*  if (!req.adminIsAuth) {
+                     throw new Error('Unauthenticated!');
+                 } */
                 let reduction = parseInt(args.reductionPourcentage)
                 const products = await Product.find({ productType: args.groupType })
-                await products.forEach(p => {
+                products.forEach(p => {
                     if (p.productCategories.includes(args.productGroupName)) {
-                        p.productSalesPrice = (product.productPrice / 100) * reduction
-                        p.save()
+                        p.productSalesPrice = p.productPrice - ((p.productPrice / 100) * reduction)
+                        p.productOnSales = 'Yes'
+
+                        return p.save()
                     }
                 })
-                return products
             }
         },
         removeGroupProductReduction: {
@@ -216,6 +223,7 @@ const Mutation = new GraphQLObjectType({
                 await products.forEach(p => {
                     if (p.productCategories.includes(args.productGroupName)) {
                         p.productSalesPrice = 0
+                        p.productOnSales = 'No'
                         p.save()
                     }
                 })
@@ -249,7 +257,7 @@ const Mutation = new GraphQLObjectType({
                     throw new Error('errorMessage.unAuthenticated')
                 }
                 const product = await Product.findById(args.productId)
-                product.status = 'frozen'
+                product.status = 'Frozen'
                 return product.save()
             }
         },
@@ -267,9 +275,6 @@ const Mutation = new GraphQLObjectType({
                     if (err) return handleError(err);
                 });
                 return null
-
-                /* const review = await Review.findById(args.reviewId)
-                return await Booking.remove(booking) */
             }
         },
         addCategory: {

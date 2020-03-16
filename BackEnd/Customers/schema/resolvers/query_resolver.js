@@ -51,20 +51,20 @@ const RootQuery = new GraphQLObjectType({
         },
         products: {
             type: new GraphQLList(type.ProductType),
-            resolve: async(parent, args) => await Product.find({ status: 'opened' })
+            resolve: async(parent, args) => await Product.find({ status: 'Opened' })
         },
 
         getMen_products: {
             type: new GraphQLList(type.ProductType),
-            resolve: async(parent, args) => await Product.find({ status: 'opened', productType: 'men' })
+            resolve: async(parent, args) => await Product.find({ status: 'Opened', productTargetedGroup: 'Men' })
         },
         getWomen_products: {
             type: new GraphQLList(type.ProductType),
-            resolve: async(parent, args) => await Product.find({ status: 'opened', productType: 'women' })
+            resolve: async(parent, args) => await Product.find({ status: 'Opened', productTargetedGroup: 'Women' })
         },
         getChildren_products: {
             type: new GraphQLList(type.ProductType),
-            resolve: async(parent, args) => await Product.find({ productType: 'children' })
+            resolve: async(parent, args) => await Product.find({ status: 'Opened', productTargetedGroup: 'Children' })
         },
         productVariants: { // return same products avalaible with different color
             type: new GraphQLList(type.ProductType),
@@ -80,50 +80,68 @@ const RootQuery = new GraphQLObjectType({
         },
         getShoes: {
             type: new GraphQLList(type.ProductType),
-            resolve: async(parent, args) => {
-                const products = await Product.find({ status: 'opened' })
-                const shoes = await products.filter(p => !p.productCategories.includes('shoes'))
-                return shoes
-            }
+            args: { targetedGroup: { type: GraphQLString } },
+            resolve: async(parent, args) => await Product.find({ status: 'Opened', productTargetedGroup: args.targetedGroup, productType: 'Shoes' })
         },
+
         getClothes: {
             type: new GraphQLList(type.ProductType),
-            resolve: async(parent, args) => {
-                const products = await Product.find({ status: 'opened' })
-                const clothes = await products.filter(p => !p.productCategories.includes('clothes'))
-                return clothes
-            }
+            args: { targetedGroup: { type: GraphQLString } },
+            resolve: async(parent, args) => await Product.find({ status: 'Opened', productTargetedGroup: args.targetedGroup, productType: 'Clothes' })
         },
+
         getAccessories: {
             type: new GraphQLList(type.ProductType),
-            resolve: async(parent, args) => {
-                const products = await Product.find({ status: 'opened' })
-                const accessories = await products.filter(p => !p.productCategories.includes('accessories'))
-                return accessories
-            }
+            resolve: async(parent, args) => await Product.find({ status: 'Opened', productType: 'Accessories' })
         },
         getSales: {
             type: new GraphQLList(type.ProductType),
+            resolve: async(parent, args) => await Product.find({ status: 'Opened', productOnSales: 'Yes' })
+        },
+        productSingleFilter: {
+            type: new GraphQLList(type.ProductType),
+            args: {
+                groupTarget: { type: GraphQLString }, //men-women-children
+                category: { type: GraphQLString } //List Because the filter could have one or more categories.
+            },
             resolve: async(parent, args) => {
-                const products = await Product.find({ status: 'opened' })
-                const sales = []
+                const products = await Product.find({ status: 'Opened', productTargetedGroup: args.groupTarget })
+                const searchedResult = []
+
                 await products.forEach(p => {
-                    if (p.productSalesPrice > 0) {
-                        sales.push(p)
+                    if (p.productCategories.includes(args.category)) {
+                        searchedResult.push(p)
                     }
                 })
-                return sales
+                return searchedResult
+            }
+        },
+        accessorySingleFilter: {
+            type: new GraphQLList(type.ProductType),
+            args: {
+                category: { type: GraphQLString } //List Because the filter could have one or more categories.
+            },
+            resolve: async(parent, args) => {
+                const Accessories = await Product.find({ status: 'Opened', productType: 'Accessories' })
+                const searchedResult = []
+
+                await products.forEach(p => {
+                    if (p.productCategories.includes(args.category)) {
+                        searchedResult.push(p)
+                    }
+                })
+                return searchedResult
             }
         },
 
-        getCategory: {
+        productMultiFilter: {
             type: new GraphQLList(type.ProductType),
             args: {
                 groupTarget: { type: GraphQLString }, //men-women-children
                 categories: { type: new GraphQLList(GraphQLString) } //List Because the filter could have one or more categories.
             },
             resolve: async(parent, args) => {
-                const products = await Product.find({ status: 'opened', productType: args.groupTarget })
+                const products = await Product.find({ status: 'Opened', productTargetedGroup: args.groupTarget })
                 const optionCategories = args.categories
                 const searchedResult = []
 
@@ -142,7 +160,7 @@ const RootQuery = new GraphQLObjectType({
             args: {
                 productName: { type: GraphQLString }
             },
-            resolve: async(parent, args) => await Product.find({ status: 'opened', productName: args.productName })
+            resolve: async(parent, args) => await Product.find({ status: 'Opened', productName: args.productName })
         },
 
         getCart: {
@@ -207,6 +225,7 @@ const RootQuery = new GraphQLObjectType({
             type: new GraphQLList(type.ProductType),
             resolve: async(parent, args) => await Category.find({})
         },
+
 
     }
 })

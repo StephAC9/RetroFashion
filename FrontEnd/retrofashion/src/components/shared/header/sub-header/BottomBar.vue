@@ -2,12 +2,55 @@
 <div>
      <nav>
             <div class="nav-elements">
-               <div class="dropdown-media" style="text-align:start; pading-bottom:3px">
+              <div class="dropdown-media" style="text-align:start; pading-bottom:3px">
                 <div class="dropdown">
-                  <i class="fa fa-bars dropbtn" @click="openNav" style="font-size:18px" aria-hidden="true"></i> 
-                    <MegaMenu layout="media"></MegaMenu>
+                  <i class="fa fa-bars dropbtn" @click="openNav" style="font-size:18px;" aria-hidden="true"></i> 
+                    <div id="nav-overlay" class="overlay navbar-overlay">
+                      <a href="javascript:void(0)" style="color:black"  class="closebtn" @click="closeNav">&times;</a>
+                      <div class="overlay-content"> 
+                        <div>
+                           <div class="nav-content">
+                            <div class="nav-row">
+                            <div class="nav-column" style="border-top:0.5px solid; text-align:start">
+                                <a style="font-size: 16px;color: #050505;" href="/women">Women</a><br>
+                                <div style="padding-left:5px">
+                                    <a @click="fetchSingleCategoryForWomen('Clothes')">Clothes</a><br>
+                                    <a @click="fetchSingleCategoryForWomen('Shoes')">Shoes</a><br>
+                                    <a @click="fetchSingleCategoryForWomen('Accessories')">Accessories</a>
+                                </div>
+                            </div>
+                            <div class="nav-column" style="border-top:0.5px solid; text-align:start; margin-end:10px">
+                                <a style="font-size: 16px;color: #050505;"  href="/men">Men</a><br>
+                                <div style="padding-left:5px">
+                                    <a @click="fetchSingleCategoryForMen('Clothes')">Clothes</a><br>
+                                    <a @click="fetchSingleCategoryForMen('Shoes')">Shoes</a><br>
+                                    <a @click="fetchSingleCategoryForMen('Accessories')">Accessories</a>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="nav-row">
+                            <div class="nav-column" style="border-top:0.5px solid; text-align:start">
+                                <a style="font-size: 16px;color: #050505;"  href="/children">Children</a><br>
+                                <div style="padding-left:5px">
+                                    <a @click="fetchSingleCategoryForChildren('Clothes')">Clothes</a><br>
+                                    <a @click="fetchSingleCategoryForChildren('Shoes')">Shoes</a><br>
+                                    <a @click="fetchSingleCategoryForChildren('Accessories')">Accessories</a>
+                                </div>
+                            </div>
+                            <div class="nav-column" style="border-top:0.5px solid; text-align:start">
+                                <a style="font-size: 16px;color: #050505;"  href="/accessories">Accessories</a><br>
+                                <div style="padding-left:5px">
+                                    <a @click="fetchSingleCategoryForAccessories('Women')">Women</a><br>
+                                    <a @click="fetchSingleCategoryForAccessories('Men')">Men</a><br>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>                                    
+                      </div>
+                    </div> 
                   </div>
-              </div>     
+              </div>      
               <ul>
                <li>
                  <div class="dropdown">
@@ -53,21 +96,16 @@
             <div class="search">
               <input type="checkbox" id="check-search">
               <label for="check-search" class="checkbtn-search">
-                <i @click="openNav"  class="fa fa-search"></i>
+                <i @click="openSearch"  class="fa fa-search"></i>
               </label>
-              <!-- The overlay -->
-              <div id="myNav" class="overlay">
-
-                <!-- Button to close the overlay navigation -->
-                <a href="javascript:void(0)" class="closebtn" @click="closeNav">&times;</a>
-
-                <!-- Overlay content -->
+              <div id="mysearch-overlay" class="overlay search-overlay">
+                <a href="javascript:void(0)" style="color:black" class="closebtn" @click="closeSearch">&times;</a>
                 <div class="overlay-content">
                   <div class="search-bar" >
                     <input type="text" id="mySearch" onkeyup="" placeholder="Search.." title="Type in a category">
-                    <i @click="openNav"  class="fa fa-search" style="color:white"></i>
+                    <i @click="openSearch"  class="fa fa-search" style="color:grey"></i>
                   </div><hr>
-                  <div class="title"><h3>Popular</h3>
+                  <div class="title"><h3 style="color:white; border-bottom: 1px solid white">Popular</h3><hr>
                     <a class="overlay-a" style="font-size:14px" href="#">Wedding</a><br>
                     <a class="overlay-a" style="font-size:14px" href="#">Summer</a><br>
                     <a class="overlay-a" style="font-size:14px" href="#">Dresses</a><br>
@@ -93,15 +131,37 @@ export default {
       }
     },
     methods:{
-      /* Open when someone clicks on the span element */
-      openNav() {
-        document.getElementById("myNav").style.width = "100%";
+      openSearch() {
+        document.getElementById("mysearch-overlay").style.width = "100%";
       },
-
-/* Close when someone clicks on the "x" symbol inside the overlay */
+      closeSearch() {
+        document.getElementById("mysearch-overlay").style.width = "0%";
+      },
+      openNav() {
+        document.getElementById("nav-overlay").style.width = "100%";
+      },
       closeNav() {
-        document.getElementById("myNav").style.width = "0%";
-      }
+        document.getElementById("nav-overlay").style.width = "0%";
+      },
+      fetchSingleCategoryForMen(selectedCategory){
+        this.closeNav()
+            this.$store.dispatch("men/fetchSingleCategory",{selectedCategory:selectedCategory})
+        },
+        fetchSingleCategoryForWomen(selectedCategory){
+            console.log(selectedCategory)
+            this.closeNav()
+            this.$store.dispatch("women/fetchSingleCategory",{selectedCategory: selectedCategory})
+        },
+        fetchSingleCategoryForAccessories(selectedCategory){
+            console.log(selectedCategory)
+            this.closeNav()
+            this.$store.dispatch("women/fetchSingleCategory",{selectedCategory: selectedCategory})
+        },
+        fetchSingleCategoryForChildren(selectedCategory){
+            console.log(selectedCategory)
+            this.closeNav()
+            this.$store.dispatch("children/fetchSingleCategory",{selectedCategory: selectedCategory})
+        },
     }
    
 }
@@ -141,6 +201,9 @@ export default {
     .dropdown-media{
       display: block;
     }
+  }
+  .main-menu{
+    z-index: 10;
   }
  
 .dropbtn {
@@ -204,7 +267,7 @@ export default {
   display: block;
 }
 .dropdown a:hover {
-  transition: .5s;
+  transition: .9s;
   text-decoration: none;
   color:rgb(58, 53, 53);
   border-bottom: 3px solid rgb(53, 52, 52);
@@ -236,59 +299,96 @@ export default {
   border-top: none;
   border-left: none;
   border-right: none;
+  border-bottom: 0.5px solid;
   outline: 0;
   box-shadow: none!important;
-  color:whitesmoke;
+  color:rgb(37, 36, 36);
 }
 /* The Overlay (background) */
 .overlay {
   /* Height & width depends on how you want to reveal the overlay (see JS below) */    
-  height: 100%;
   width: 0;
   position: fixed; /* Stay in place */
   z-index: 2; /* Sit on top */
   left: 0;
   top: 0;
-  background-color: rgb(3, 3, 3); /* Black fallback color */
-  background-color: rgba(3, 3, 3, 0.9);  /* Black w/opacity */
   overflow-x: hidden; /* Disable horizontal scroll */
   transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
+.search-overlay{
+  height: 75%;
+  background-color: rgb(243, 235, 235); /* Black fallback color */
+  background-color: rgba(243, 235, 235, .9);  /* Black w/opacity */
+}
 
-/* Position the content inside the overlay */
+.navbar-overlay{
+  height: 100%;
+  background-color: rgb(243, 235, 235); /* Black fallback color */
+  background-color: rgba(243, 235, 235, .9);  /* Black w/opacity */
+  padding-bottom: 100px;
+}
+
 .overlay-content {
   z-index: 2;
   position: relative;
-  top: 25%; /* 25% from the top */
-  width: 100%; /* 100% width */
-  text-align: center; /* Centered text/links */
-  /* margin-top: 30px; */ /* 30px top margin to avoid conflict with the close button on smaller screens */
+  top: 25%; 
+  width: 100%; 
+  text-align: center; 
 }
 
-/* The navigation links inside the overlay */
 .overlay-a {
   padding: 8px;
   text-decoration: none;
   color: #818181;
-  display: inline-block; /* Display block instead of inline */
-  transition: 0.5s; /* Transition effects on hover (color) */
+  display: inline-block; 
+  transition: 0.5s; 
 }
-
-/* When you mouse over the navigation links, change their color */
-/* .overlay-a:hover, .overlay-a:focus {
-  color: #f1f1f1;
-} */
-
-/* Position the close button (top right corner) */
 .overlay .closebtn {
   position: absolute;
   top: 20px;
   right: 45px;
   font-size: 40px;
 }
+.nav-content{
+        display: flex;
+        width: 80%;
+        margin: 0 auto;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: rgb(221, 181, 181);
+        background-color: rgb(221, 181, 181,.8);
+        border-radius: 5px;
+        padding: 40px 10px 10px;
+    }
+    .nav-row{
+        flex-basis: 40%;
+        display: flex;
+        height: 150px;
+        width: 50%;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+    .na-column{
+       flex-basis: 40%;
+       margin: 20px; 
+    }
+    .title{
+      width: 50%;
+      margin: 0 auto;
+      border-radius: 5px;
+      border: 0.5px solid wheat;
+      background-color: rgb(221, 181, 181);
+      background-color: rgb(221, 181, 181,.8);
+      padding: 20px;
+    }
+    @media (max-width: 650px) {
+      .nav-row{
+        width: 100%;
+        justify-content: space-around;
+    }
+  }
 
-/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-@media screen and (max-height: 450px) {
+@media(max-height: 450px) {
   .overlay .overlay-a {font-size: 20px}
   .overlay .closebtn {
     font-size: 20px;
@@ -298,4 +398,3 @@ export default {
 }
    
 </style>
-

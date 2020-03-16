@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Products :products="products"></Products>
+    <Products :groupType="groupType" :products="products" :categories="menPagecategories"></Products>
   </div>
 </template>
 <script>
@@ -12,11 +12,19 @@ export default {
    components:{
      Products
   },
+  data(){
+    return{
+      groupType:'Men',
+    }
+  },
   computed:{
-    ...mapGetters('men',['products'])
+    ...mapGetters('men',['products']),
+    ...mapGetters('layouts',['isMenPage']),
+    ...mapGetters('categories',['menPagecategories'])
   },
   beforeCreate(){
     this.$store.dispatch('men/fetchMenProducts')
+    this.$store.dispatch('layouts/inMenPage')
   }
     
 }

@@ -108,7 +108,7 @@ const RootQuery = new GraphQLObjectType({
         allProducts: {
             type: new GraphQLList(type.ProductType),
             resolve: async(parent, args) => {
-                return await Product.find({ status: 'opened' })
+                return await Product.find({ status: 'Opened' })
             }
         },
 

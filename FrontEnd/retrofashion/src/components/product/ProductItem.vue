@@ -1,15 +1,16 @@
 <template>
      <div class="product-container">
-               <div @mouseover="first = !first" @mouseleave="first = true">
+               <div class="img-container" @mouseover="first = !first" @mouseleave="first = true">
                   <img style="width: 100%; height:100%;" v-if="first" :src="require(`../../../../Images/${product.productImages[0]}`)" alt="img">  
-                  <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">    
+                  <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">
+                  <div class="cercle">-30</div>      
                </div>
                 <div style="margin-top:10px;height:70px">
-                    <p style="margin:0 auto;font-size:13px; text-align:start;font-weight:bold"> {{product.productName}}</p>
+                    <p class="title"> {{product.productName}}</p>
                 </div>
                <div class="bottom">
                  <div class="bottom-el price">
-                    <div v-bind:style= "[product.productSalesPrice > 0 ? {textDecoration:lineThrough} : {textDecoration:none}]" style="text-align:bottom;margin-end:5px">  {{product.productPrice}} kr</div>
+                    <div v-bind:style= "[product.productSalesPrice > 0 ? {textDecoration:lineThrough} : {textDecoration:none}]" style="text-align:bottom; margin-left:3px">  {{product.productPrice}} kr</div>
                     <div v-show="product.productSalesPrice > 0"><p style="color:red">  {{product.productSalesPrice}} kr</p></div>
                  </div>
                  <div class="bottom-el icons">
@@ -31,9 +32,7 @@ export default {
             lineThrough:'line-through'
         }
     },
-    created(){
-      console.log(this.product.productImages[0])
-    },
+   
     methods:{
             manageFavorites(){   
             this.tofavorites = !this.tofavorites
@@ -62,11 +61,11 @@ export default {
       justify-content: space-evenly;
       padding: 2px;
       padding-bottom: 10px;
+      background-color: rgb(252, 249, 249);
     }
 .product{
-  flex-basis: 20%;
-  min-width: 250px;
-  height: 420px;
+  flex-basis: 30%;
+  min-width: 170px;
 }
 .product:hover{
   border: 0.5px solid rgb(240, 234, 234)
@@ -86,6 +85,7 @@ export default {
   box-shadow: none!important;
   border:none;
   margin-right: 5px;
+  background: transparent;
 }
 .cart:hover {
   color:rgb(124, 122, 122);
@@ -98,7 +98,8 @@ export default {
   outline: 0;
   box-shadow: none!important;
   font-size: 20px;
-  border:none
+  border:none;
+  background: transparent;
 }
 .bottom{
   width: 100%;
@@ -120,17 +121,38 @@ export default {
   padding-left: 40px;
   padding-bottom: 10px;
 }
-.cercle{
-  width: 20px;
-  border-radius: 50%;
-  z-index: 2;
-  background: rosybrown;
-}
+
 .image{
   width: 100%; 
   height:100%;
   background-size: 100%;
   z-index: 0;
 }
+.img-container{
+  position: relative;
+}
+.cercle{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: aquamarine;
+  position: absolute;
+  font-size: 15px;
+  font-weight: bold;
+  top: 1px;
+  text-align: center;
+  padding-top: 12px;
+}
+.title{
+  margin:0 auto;
+  font-size:11px; 
+  text-align:start;
+  font-weight:bold
+}
+ @media (max-width: 750px) {
+       .cart,.heart-icon{
+         background: transparent;
+      }
+  }
 
 </style>
