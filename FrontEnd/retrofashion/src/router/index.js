@@ -208,6 +208,10 @@ const routes = [{
         name: 'Women_Accessories',
         component: Accessories,
     }, {
+        path: '/women/multi categories',
+        name: 'Women_multi',
+        component: MenCategory,
+    }, {
         path: '/men',
         name: 'men',
         component: MenProducts
@@ -237,6 +241,10 @@ const routes = [{
         name: 'Men_T-shirts',
         component: MenCategory,
     }, {
+        path: '/men/clothes/tshirts',
+        name: 'Men_Shirts',
+        component: MenCategory,
+    }, {
         path: '/men/clothes/jackets',
         name: 'Men_Jackets',
         component: MenCategory,
@@ -260,7 +268,12 @@ const routes = [{
         path: '/men/shoes/business shoes',
         name: 'Men_Business shoes',
         component: MenCategory,
+    }, {
+        path: '/men/multi categories',
+        name: 'Men_multi',
+        component: MenCategory,
     },
+
     {
         path: '/children',
         name: 'children',
@@ -309,6 +322,10 @@ const routes = [{
     }, {
         path: '/children/shoes/business shoes',
         name: 'Men_Business shoes',
+        component: MenCategory,
+    }, {
+        path: '/children/multi categories',
+        name: 'Children_multi',
         component: MenCategory,
     },
     {

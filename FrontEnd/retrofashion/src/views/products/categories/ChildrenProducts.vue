@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Products :groupType="groupType" :products="products" :categories="menPagecategories"></Products>
+    <Products :groupType="groupType" :products="products" :categories="childrenPagecategories"></Products>
   </div>
 </template>
 <script>

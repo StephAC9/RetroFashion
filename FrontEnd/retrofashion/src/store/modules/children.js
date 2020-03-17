@@ -18,14 +18,14 @@ const getters = {
     isTargetGroup: state => state.targetGroup,
 }
 const actions = {
-    async fetchMenProducts({ commit }) {
+    async fetchChildrenProducts({ commit }) {
         try {
-            const menProducts = await axios({
+            const childrenProducts = await axios({
                 method: 'POST',
                 url: 'http://localhost:4300/graphql',
                 data: {
-                    query: `query getMen_products{
-                          getMen_products{
+                    query: `query getChildren_products{
+                          getChildren_products{
                            id
                            productImages
                            productCategories
@@ -41,9 +41,9 @@ const actions = {
                 },
 
             })
-            const menProductList = menProducts.data.data.getMen_products
-            console.log(menProductList)
-            commit('SET_PRODUCTS', menProductList)
+            const childrenProductsList = childrenProducts.data.data.getChildren_products
+            console.log(childrenProductsList)
+            commit('SET_PRODUCTS', childrenProductsList)
         } catch (err) {
             console.log(err)
         }
@@ -71,7 +71,7 @@ const actions = {
                         }             
                     }`,
                     variables: {
-                        groupTarget: 'Men',
+                        groupTarget: 'Children',
                         categories: payload.selected,
                     }
                 },
@@ -85,9 +85,9 @@ const actions = {
             let isMulti = selected.length > 1
             console.log(isMulti)
             if (isMulti == false) {
-                router.push({ name: 'Men_' + payload.selected[0] })
+                router.push({ name: 'Children_' + payload.selected[0] })
             } else {
-                router.push({ name: 'Men_multi' })
+                router.push({ name: 'Children_multi' })
             }
         } catch (err) {
             console.log(err)

@@ -17,7 +17,7 @@
             ></SelectedCategories>
           </div> -->
           <b-form-group>
-          <CategoryForm style="min-width:123px" :category="category"></CategoryForm>
+          <CategoryForm style="min-width:123px" :category="category" :groupType="groupType"></CategoryForm>
           </b-form-group>
         </b-card-body>
       </b-collapse>
@@ -34,7 +34,16 @@ import CategoryForm from './CategoryInputForm'
       CategoryForm,
       //SelectedCategories
     },
-    props:['category'],
+    props:{
+        category: {
+            type: Object,
+            required: true
+        },
+        groupType: {
+          type: String,
+          required: true
+        }
+    },
     data() {
       return {
         show: false,

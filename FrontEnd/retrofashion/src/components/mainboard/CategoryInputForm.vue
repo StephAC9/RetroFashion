@@ -13,7 +13,7 @@
                     </div>
                   </div>
                   <div>
-                    <a href="#">search</a>
+                    <a style="text-decoration:underline; cursor:pointer" @click="fetchRelatedCategory">search</a>
                   </div>
               </div>
         </b-form-checkbox-group>
@@ -25,6 +25,10 @@ export default {
         category: {
             type: Object,
             required: true
+        },
+        groupType: {
+          type: String,
+          required: true
         }
     },
     data(){
@@ -33,6 +37,7 @@ export default {
             show: false
         }
     },
+
     watch:{
         selected(v){
             if(v !== null || v !== undefined){
@@ -43,6 +48,18 @@ export default {
                     this.show = false
                 }              
             }
+        }
+    },
+    methods:{
+         fetchRelatedCategory(){
+             console.log('TargetedGroup:  '+ this.groupType)
+             if(this.groupType == 'Men'){
+                this.$store.dispatch("men/filterProducts",{selected: this.selected})
+             }if(this.groupType == 'Women'){
+                this.$store.dispatch("women/filterProducts",{selected: this.selected})
+             }if(this.groupType == 'Children'){
+                this.$store.dispatch("children/filterProducts",{selected: this.selected})
+             }
         }
     }
 }
@@ -68,6 +85,10 @@ export default {
     }
     a:hover{
         color: rgb(51, 50, 50);
+    }
+    .search{
+        text-decoration: underline;
+        cursor: pointer;
     }
 
 </style>

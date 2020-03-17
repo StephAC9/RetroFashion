@@ -4,7 +4,7 @@ import router from '../router'
 import men from './modules/men'
 import women from './modules/women'
 import layouts from './modules/layouts'
-/* import children from './modules/children' */
+import children from './modules/children'
 import accessories from './modules/accessories'
 import categories from './modules/categories'
 import createPersistedState from 'vuex-persistedstate'
@@ -21,7 +21,7 @@ export default new Vuex.Store({
         men,
         women,
         layouts,
-        /* children, */
+        children,
         accessories,
         categories
     },
