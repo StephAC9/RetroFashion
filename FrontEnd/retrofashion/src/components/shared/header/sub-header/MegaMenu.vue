@@ -4,22 +4,22 @@
                         <div class="row">
                         <div class="column">
                             <h4>Clothes</h4>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Clothes')">All clothes</a>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Dresses')">Dresses</a>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Tops')">Tops</a>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Skirts')">Skirts</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Clothes'])">All clothes</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Dresses'])">Dresses</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Tops'])">Tops</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Skirts'])">Skirts</a>
                         </div>
                         <div class="column">
                             <h4>Shoes</h4>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Shoes')">All shoes</a>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Sneakers')">Sneakers</a>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Boots')">Boots</a>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Heels')" >Heels</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Shoes'])">All shoes</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Sneakers'])">Sneakers</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Boots'])">Boots</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Heels'])" >Heels</a>
                         </div>
                         <div class="column">
                             <h4>Wedding</h4>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Wedding')">Wedding</a>
-                            <a class="link" @click="fetchSingleCategoryForWomen('Wedding guest')" >Wedding guest</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Wedding'])">Wedding</a>
+                            <a class="link" @click="fetchRelatedCategories('women',['Wedding guest'])" >Wedding guest</a>
                         </div>
                         </div>
             </div>
@@ -27,23 +27,23 @@
                         <div class="row">
                         <div class="column">
                             <h4>Clothes</h4>
-                            <a class="link" @click="fetchSingleCategoryForMen('Clothes')">All clothes</a>
-                            <a class="link" @click="fetchSingleCategoryForMen('Suits')">Suits</a>
-                            <a class="link" @click="fetchSingleCategoryForMen('T-shirts')">T-shirts</a>
-                            <a class="link" @click="fetchSingleCategoryForMen('Trousers')">Trousers</a>
-                            <a class="link" @click="fetchSingleCategoryForMen('Jackets')">Jackets</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Clothes'])">All clothes</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Suits'])">Suits</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['T-shirts'])">T-shirts</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Trousers'])">Trousers</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Jackets'])">Jackets</a>
                         </div>
                         <div class="column">
                             <h4>Shoes</h4>
-                            <a class="link" @click="fetchSingleCategoryForMen('Shoes')">All shoes</a>
-                            <a class="link" @click="fetchSingleCategoryForMen('Sneakers')">Sneakers</a>
-                            <a class="link" @click="fetchSingleCategoryForMen('Business shoes')">Business shoes</a>
-                            <a class="link" @click="fetchSingleCategoryForMen('Outdoors')">Outdoors</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Shoes'])">All shoes</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Sneakers'])">Sneakers</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Business shoes'])">Business shoes</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Outdoors'])">Outdoors</a>
                         </div>
                         <div class="column">
                             <h4>Wedding</h4>
-                            <a class="link" @click="fetchSingleCategoryForMen('Wedding')">Wedding</a>
-                            <a class="link" @click="fetchSingleCategoryForMen('Wedding guest')">Wedding guest</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Wedding'])">Wedding</a>
+                            <a class="link" @click="fetchRelatedCategories('men',['Wedding guest'])">Wedding guest</a>
                         </div>
                         </div>
             </div>
@@ -88,11 +88,11 @@
                 <div class="row">
                  <div class="column">
                             <h4>Accessories</h4>
-                            <a class="link" @click="fetchSingleCategoryForAccessories('Bags')" >Bags</a>
-                            <a class="link" @click="fetchSingleCategoryForAccessories('Hats')" >Hats</a>
-                            <a class="link" @click="fetchSingleCategoryForAccessories('Sunglasses')">Sunglasses</a>
-                            <a class="link" @click="fetchSingleCategoryForAccessories('Watches')">Watches</a>
-                            <a class="link" @click="fetchSingleCategoryForAccessories('Jewelries')">Jewelries</a>
+                            <a class="link" @click="fetchRelatedCategories('accessories',['Bags'])" >Bags</a>
+                            <a class="link" @click="fetchRelatedCategories('accessories',['Hats'])" >Hats</a>
+                            <a class="link" @click="fetchRelatedCategories('accessories',['Sunglasses'])">Sunglasses</a>
+                            <a class="link" @click="fetchRelatedCategories('accessories',['Watches'])">Watches</a>
+                            <a class="link" @click="fetchRelatedCategories('accessories',['Jewelries'])">Jewelries</a>
                  </div>
                 </div>
             </div>
@@ -107,20 +107,8 @@ export default {
       }
     },
     methods:{
-         fetchSingleCategoryForMen(selectedCategory){
-            this.$store.dispatch("men/fetchSingleCategory",{selectedCategory:selectedCategory})
-        },
-        fetchSingleCategoryForWomen(selectedCategory){
-            console.log(selectedCategory)
-            this.$store.dispatch("women/fetchSingleCategory",{selectedCategory: selectedCategory})
-        },
-        fetchSingleCategoryForAccessories(selectedCategory){
-            console.log(selectedCategory)
-            this.$store.dispatch("women/fetchSingleCategory",{selectedCategory: selectedCategory})
-        },
-        fetchSingleCategoryForChildren(selectedCategory){
-            console.log(selectedCategory)
-            this.$store.dispatch("children/fetchSingleCategory",{selectedCategory: selectedCategory})
+       fetchRelatedCategories(groupTarget,selected){
+            this.$store.dispatch(groupTarget+"/filterProducts",{selected:selected})
         }, 
     }
    

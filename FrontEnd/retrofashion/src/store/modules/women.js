@@ -9,14 +9,17 @@ const state = {
     clothes: [],
     singleCategoryFilterProducts: [],
     multiCategoriesFilterProducts: [],
+    filteredProducts: [],
 
 }
 const getters = {
     products: state => state.products,
     shoes: state => state.products.filter(product => !product.productCategories.includes('Shoes')),
     clothes: state => state.products.filter(product => !product.productCategories.includes('Clothes')),
+    filteredProducts: state => state.filteredProducts,
     singleCategoryFilterProducts: state => state.singleCategoryFilterProducts,
-    multiCategoriesFilterProducts: state => state.singleCategoryFilterProducts,
+    multiCategoriesFilterProducts: state => state.multiCategoryFilterProducts,
+
 }
 const actions = {
     async fetchWomenProducts({ commit }) {
@@ -52,14 +55,87 @@ const actions = {
             console.log(err)
         }
     },
-    async fetchSingleCategory({ commit }, payload) {
+    /*   async fetchSingleCategory({ commit }, payload) {
+          try {
+              const categoryProducts = await axios({
+                  method: 'POST',
+                  url: 'http://localhost:4300/graphql',
+                  data: {
+                      query: `query productSingleFilter($groupTarget: String!,$category: String!){
+                          productSingleFilter(groupTarget:$groupTarget,category:$category){
+                              id
+                              productName
+                              productImages
+                              productTargetedGroup
+                              productType
+                              productCategories
+                              productDescription
+                              productColor
+                              productSize
+                              productPrice
+                              productEntryDate
+                          }             
+                      }`,
+                      variables: {
+                          groupTarget: 'Women',
+                          category: payload.selectedCategory,
+                      }
+                  },
+
+              })
+              const categoryProductList = categoryProducts.data.data.productSingleFilter
+              console.log(categoryProductList)
+              commit('SET_SINGLE_FILTER_PRODUCTS', categoryProductList)
+              router.push({ name: 'Women_' + payload.selectedCategory })
+          } catch (err) {
+              console.log(err)
+          }
+      },
+      async fetchMultipleCategories({ commit }, payload) {
+          try {
+              const categoryProducts = await axios({
+                  method: 'POST',
+                  url: 'http://localhost:4300/graphql',
+                  data: {
+                      query: `query productMultiFilter($groupTarget: String!,$categories: String!){
+                          productMultiFilter(groupTarget:$groupTarget,categories:$categories){
+                              id
+                              productName
+                              productImages
+                              productTargetedGroup
+                              productType
+                              productCategories
+                              productDescription
+                              productColor
+                              productSize
+                              productPrice
+                              productEntryDate
+                          }             
+                      }`,
+                      variables: {
+                          groupTarget: 'Women',
+                          categories: payload.selected,
+                      }
+                  },
+
+              })
+              const categoryProductList = categoryProducts.data.data.productSingleFilter
+              console.log(categoryProductList)
+              commit('SET_MULTI_FILTER_PRODUCTS', categoryProductList)
+              router.push({ name: 'Women_multi' })
+          } catch (err) {
+              console.log(err)
+          }
+      }, */
+    async filterProducts({ commit }, payload) {
+        console.log(payload)
         try {
             const categoryProducts = await axios({
                 method: 'POST',
                 url: 'http://localhost:4300/graphql',
                 data: {
-                    query: `query productSingleFilter($groupTarget: String!,$category: String!){
-                        productSingleFilter(groupTarget:$groupTarget,category:$category){
+                    query: `query productsFilter($groupTarget: String!,$categories: [String]!){
+                        productsFilter(groupTarget:$groupTarget,categories:$categories){
                             id
                             productName
                             productImages
@@ -75,15 +151,23 @@ const actions = {
                     }`,
                     variables: {
                         groupTarget: 'Women',
-                        category: payload.selectedCategory,
+                        categories: payload.selected,
                     }
                 },
 
             })
-            const categoryProductList = categoryProducts.data.data.productSingleFilter
+            const categoryProductList = categoryProducts.data.data.productsFilter
             console.log(categoryProductList)
-            commit('SET_SINGLE_FILTER_PRODUCTS', categoryProductList)
-            router.push({ name: 'Women_' + payload.selectedCategory })
+            commit('SET_FILTERED_PRODUCTS', categoryProductList)
+            const selected = payload.selected
+            console.log(selected.length)
+            let isMulti = selected.length > 1
+            console.log(isMulti)
+            if (isMulti == false) {
+                router.push({ name: 'Women_' + payload.selected[0] })
+            } else {
+                router.push({ name: 'Women_multi' })
+            }
         } catch (err) {
             console.log(err)
         }
@@ -91,7 +175,9 @@ const actions = {
 }
 const mutations = {
     SET_PRODUCTS: (state, payload) => state.products = payload,
-    SET_SINGLE_FILTER_PRODUCTS: (state, payload) => state.singleCategoryFilterProducts = payload,
+    SET_FILTERED_PRODUCTS: (state, payload) => state.filteredProducts = payload,
+    /* SET_SINGLE_FILTER_PRODUCTS: (state, payload) => state.singleCategoryFilterProducts = payload,
+    SET_MULTI_FILTER_PRODUCTS: (state, payload) => state.multiCategoryFilterProducts = payload, */
 }
 
 

@@ -14,17 +14,17 @@
                             <div class="nav-column" style="border-top:0.5px solid; text-align:start">
                                 <a style="font-size: 16px;color: #050505;" href="/women">Women</a><br>
                                 <div style="padding-left:5px">
-                                    <a @click="fetchSingleCategoryForWomen('Clothes')">Clothes</a><br>
-                                    <a @click="fetchSingleCategoryForWomen('Shoes')">Shoes</a><br>
-                                    <a @click="fetchSingleCategoryForWomen('Accessories')">Accessories</a>
+                                    <a @click="fetchRelatedCategories('women',['Clothes'])">Clothes</a><br>
+                                    <a @click="fetchRelatedCategories('women',['Shoes'])">Shoes</a><br>
+                                    <a @click="fetchRelatedCategories('women',['Accessories'])">Accessories</a>
                                 </div>
                             </div>
                             <div class="nav-column" style="border-top:0.5px solid; text-align:start; margin-end:10px">
                                 <a style="font-size: 16px;color: #050505;"  href="/men">Men</a><br>
                                 <div style="padding-left:5px">
-                                    <a @click="fetchSingleCategoryForMen('Clothes')">Clothes</a><br>
-                                    <a @click="fetchSingleCategoryForMen('Shoes')">Shoes</a><br>
-                                    <a @click="fetchSingleCategoryForMen('Accessories')">Accessories</a>
+                                    <a @click="fetchRelatedCategories('men',['Clothes'])">Clothes</a><br>
+                                    <a @click="fetchRelatedCategories('men',['Shoes'])">Shoes</a><br>
+                                    <a @click="fetchRelatedCategories('men',['Accessories'])">Accessories</a>
                                 </div>
                             </div>
                           </div>
@@ -32,16 +32,16 @@
                             <div class="nav-column" style="border-top:0.5px solid; text-align:start">
                                 <a style="font-size: 16px;color: #050505;"  href="/children">Children</a><br>
                                 <div style="padding-left:5px">
-                                    <a @click="fetchSingleCategoryForChildren('Clothes')">Clothes</a><br>
-                                    <a @click="fetchSingleCategoryForChildren('Shoes')">Shoes</a><br>
-                                    <a @click="fetchSingleCategoryForChildren('Accessories')">Accessories</a>
+                                    <a @click="fetchRelatedCategories('children',['Clothes'])">Clothes</a><br>
+                                    <a @click="fetchRelatedCategories('children',['Shoes'])">Shoes</a><br>
+                                    <a @click="fetchRelatedCategories('children',['Accessories'])">Accessories</a>
                                 </div>
                             </div>
                             <div class="nav-column" style="border-top:0.5px solid; text-align:start">
                                 <a style="font-size: 16px;color: #050505;"  href="/accessories">Accessories</a><br>
                                 <div style="padding-left:5px">
-                                    <a @click="fetchSingleCategoryForAccessories('Women')">Women</a><br>
-                                    <a @click="fetchSingleCategoryForAccessories('Men')">Men</a><br>
+                                    <a @click="fetchRelatedCategories('accessories',['Women'])">Women</a><br>
+                                    <a @click="fetchRelatedCategories('accessories',['Men'])">Men</a><br>
                                 </div>
                             </div>
                             </div>
@@ -143,25 +143,10 @@ export default {
       closeNav() {
         document.getElementById("nav-overlay").style.width = "0%";
       },
-      fetchSingleCategoryForMen(selectedCategory){
-        this.closeNav()
-            this.$store.dispatch("men/fetchSingleCategory",{selectedCategory:selectedCategory})
-        },
-        fetchSingleCategoryForWomen(selectedCategory){
-            console.log(selectedCategory)
-            this.closeNav()
-            this.$store.dispatch("women/fetchSingleCategory",{selectedCategory: selectedCategory})
-        },
-        fetchSingleCategoryForAccessories(selectedCategory){
-            console.log(selectedCategory)
-            this.closeNav()
-            this.$store.dispatch("women/fetchSingleCategory",{selectedCategory: selectedCategory})
-        },
-        fetchSingleCategoryForChildren(selectedCategory){
-            console.log(selectedCategory)
-            this.closeNav()
-            this.$store.dispatch("children/fetchSingleCategory",{selectedCategory: selectedCategory})
-        },
+       fetchRelatedCategories(groupTarget,selected){
+          this.closeNav()
+          this.$store.dispatch(groupTarget+"/filterProducts",{selected:selected})
+        }, 
     }
    
 }
