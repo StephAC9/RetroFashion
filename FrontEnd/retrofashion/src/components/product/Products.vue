@@ -3,11 +3,6 @@
         <div class="category-container">
             <CategoriesBoard class="category" :groupType="groupType" :categories="categories"></CategoriesBoard>
         </div>
-    <!-- <Categories
-    class="category-container"
-    categoryName="Women"
-        v-bind:options="['Dress', 'Jeans', 'Shoes', 'Bags', 'Hats']"
-    ></Categories> -->
     <div class="product-page">
          <div style="padding: 20px">    
             <div>
@@ -41,7 +36,6 @@
 </template>
 <script>
 import ProductItem from './ProductItem'
-//import Categories from '../categorySelect/SingelSelect'
 import CategoriesBoard from '../mainboard/CategoriesBoard'
 export default {
     name: 'products',
@@ -60,7 +54,6 @@ export default {
     },
     components:{
         ProductItem,
-        //Categories,
         CategoriesBoard
     },
     mounted(){

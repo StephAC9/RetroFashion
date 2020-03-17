@@ -2,7 +2,7 @@ const state = {
     menPagecategories: [{
             id: 1,
             name: 'SALES',
-            elements: ['shoes', 'clothes', 'accessories']
+            elements: ['Shoes', 'Clothes', 'Accessories']
         },
         {
             id: 2,
@@ -17,7 +17,7 @@ const state = {
         {
             id: 4,
             name: 'ACCESSORIES',
-            elements: ['travel bags', 'handbags', 'belts', 'scarfs', 'hats', 'wallets', 'jewelries']
+            elements: ['Travel bags', 'Handbags', 'Belts', 'Scarfs', 'Hats', 'Wallets', 'Jewelries']
         },
         {
             id: 5,
@@ -27,12 +27,12 @@ const state = {
         {
             id: 6,
             name: 'SUMMER',
-            elements: ['sneakers', 'tshirts', 'shorts', 'hats']
+            elements: ['Sneakers', 'Tshirts', 'Shorts', 'Hats']
         },
         {
             id: 7,
             name: 'WINTER',
-            elements: ['boots', 'jackets', 'pull-over', 'tops', 'clothes', 'shoes']
+            elements: ['Boots', 'Jackets', 'Pull-over', 'Tops', 'Clothes', 'Shoes']
         },
         {
             id: 8,
@@ -50,12 +50,12 @@ const state = {
     womenPagecategories: [{
             id: 1,
             name: 'SALES',
-            elements: ['shoes', 'clothes', 'accessories']
+            elements: ['Shoes', 'Clothes', 'Accessories']
         },
         {
             id: 2,
             name: 'CLOTHES',
-            elements: ['Dresses', 'quirts', 'tops', 'lingeries', 'wedding', 'wedding guest', 'Jeans', 'Jackets']
+            elements: ['Dresses', 'Skirts', 'Tops', 'Lingeries', 'Wedding', 'Wedding guest', 'Jeans', 'Jackets']
         },
         {
             id: 3,
@@ -65,7 +65,7 @@ const state = {
         {
             id: 4,
             name: 'ACCESSORIES',
-            elements: ['travel bags', 'handbags', 'belts', 'scarfs', 'hats', 'wallets', 'jewelries']
+            elements: ['Travel bags', 'Handbags', 'Belts', 'Scarfs', 'Hats', 'Wallets', 'Jewelries']
         },
         {
             id: 5,
@@ -75,12 +75,12 @@ const state = {
         {
             id: 6,
             name: 'SUMMER',
-            elements: ['sneakers', 'tshirts', 'shorts', 'hats']
+            elements: ['Sneakers', 'Tshirts', 'Shorts', 'Hats']
         },
         {
             id: 7,
             name: 'WINTER',
-            elements: ['boots', 'jackets', 'pull-over', 'tops', 'clothes', 'shoes']
+            elements: ['Boots', 'Jackets', 'Pull-over', 'Tops', 'Clothes', 'Shoes']
         },
         {
             id: 8,
@@ -96,22 +96,22 @@ const state = {
     childrenPagecategories: [{
             id: 1,
             name: 'SALES',
-            elements: ['shoes', 'clothes', 'accessories']
+            elements: ['Shoes', 'Clothes', 'Accessories']
         },
         {
             id: 2,
             name: 'CLOTHES',
-            elements: ['Dresses', 'quirts', 'tops', 'lingeries', 'wedding', 'wedding guest', 'Jeans', 'Jackets']
+            elements: ['Dresses', 'Skirts', 'Tops', 'Tshirts', 'Trousers', 'Jeans', 'Jackets']
         },
         {
             id: 3,
             name: 'SHOES',
-            elements: ['Heels', 'Sneakers', 'Sandals', 'Boots', 'Outdoor']
+            elements: ['Sneakers', 'Sandals', 'Boots', 'Outdoor']
         },
         {
             id: 4,
             name: 'ACCESSORIES',
-            elements: ['travel bags', 'handbags', 'belts', 'scarfs', 'hats', 'wallets', 'jewelries']
+            elements: ['Travel bags', 'Belts', 'Scarfs', 'Hats', 'Jewelries']
         },
         {
             id: 5,
@@ -123,12 +123,12 @@ const state = {
         {
             id: 6,
             name: 'SUMMER',
-            elements: ['sneakers', 'tshirts', 'shorts', 'hats']
+            elements: ['Sneakers', 'Tshirts', 'Shorts', 'Hats']
         },
         {
             id: 7,
             name: 'WINTER',
-            elements: ['boots', 'jackets', 'pull-over', 'tops', 'clothes', 'shoes']
+            elements: ['Boots', 'Jackets', 'Pull-over', 'Tops', 'Clothes', 'Shoes']
         },
         {
             id: 8,

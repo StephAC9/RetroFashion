@@ -155,6 +155,29 @@ const RootQuery = new GraphQLObjectType({
                 return searchedResult
             }
         },
+        productsFilter: {
+            type: new GraphQLList(type.ProductType),
+            args: {
+                groupTarget: { type: GraphQLString }, //men-women-children
+                categories: { type: new GraphQLList(GraphQLString) } //List Because the filter could have one or more categories.
+            },
+            resolve: async(parent, args) => {
+                const products = await Product.find({ status: 'Opened', productTargetedGroup: args.groupTarget })
+                const optionCategories = args.categories
+                console.log(optionCategories)
+                const searchedResult = []
+
+                await optionCategories.forEach(c => {
+                    products.forEach(p => {
+                        if (p.productCategories.includes(c)) {
+                            searchedResult.push(p)
+                        }
+                    })
+                })
+                console.log(searchedResult)
+                return searchedResult
+            }
+        },
         getProductsByName: {
             type: new GraphQLList(type.ProductType),
             args: {
