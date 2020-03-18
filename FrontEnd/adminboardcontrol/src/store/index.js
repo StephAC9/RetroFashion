@@ -66,9 +66,10 @@ export default new Vuex.Store({
                     headers: {
                         Authorization: 'Bearer ' + localStorage.getItem('token')
                     },
+
                     data: {
-                        query: `mutation addProduct($productName: String!,$productImages: [String]!, $productType: String!,$productCategories: [String]!,$productDescription: String!,$productColor: String!,$productSize: String!,$productPrice: Float!,$quantity: Int!){
-                        addProduct(productName:$productName,productImages:$productImages,productType:$productType,productCategories:$productCategories,productDescription:$productDescription,productColor:$productColor,productSize:$productSize,productPrice:$productPrice,quantity:$quantity){
+                        query: `mutation addProduct($productName: String!,$productImages: [String]!,$productTargetedGroup: String!, $productType: String!,$productCategories: [String]!,$productDescription: String!,$productColor: String!,$productSize: String!,$productPrice: Float!,$quantity: Int!){
+                        addProduct(productName:$productName,productImages:$productImages,productTargetedGroup:$productTargetedGroup,productType:$productType,productCategories:$productCategories,productDescription:$productDescription,productColor:$productColor,productSize:$productSize,productPrice:$productPrice,quantity:$quantity){
                             id
                             productName
                             productImages
@@ -84,6 +85,7 @@ export default new Vuex.Store({
                         variables: {
                             productName: payload.name,
                             productImages: payload.images,
+                            productTargetedGroup: payload.groupTarget,
                             productType: payload.type,
                             productCategories: payload.categories,
                             productDescription: payload.description,

@@ -198,14 +198,14 @@ export default {
 
       //Categories should be dynamic  Also product sizes could be set in advance for all products
       customerTargetOptions: [
-            { text: 'Men', value: 'men' },
-            { text: 'Women', value: 'women' },
-            { text: 'Children', value: 'children' },
+            { text: 'Men', value: 'Men' },
+            { text: 'Women', value: 'Women' },
+            { text: 'Children', value: 'Children' },
      ],
       mainOptions: [
-            { text: 'Clothes', value: 'clothes' },
-            { text: 'Shoes', value: 'shoes' },
-            { text: 'Accessoiries', value: 'accessoiries' }
+            { text: 'Clothes', value: 'Clothes' },
+            { text: 'Shoes', value: 'Shoes' },
+            { text: 'Accessoiries', value: 'Accessoiries' }
      ],
      clothesOptions: [
             { text: 'New Arrivals', value: 'newArrivals' },
@@ -218,8 +218,10 @@ export default {
             { text: 'Jackets', value: 'Jackets' },
             { text: 'Dresses', value: 'Dresses' },
             { text: 'Squirts', value: 'Squirts' },
-            { text: 'Swimming clothes', value: 'Swimming' },
+            { text: 'Swim wear', value: 'Swim wear' },
             { text: 'Underwears', value: 'Underwears' },
+            { text: 'Suits', value: 'Suits' },
+            { text: 'Polo', value: 'Polo' },
      ],
      clothesMaterialOptions:[
          { text: 'Cotton', value: 'Cotton' },
@@ -289,7 +291,7 @@ export default {
       console.log(files)
       if (!files.length)
         return;
-     this.images.push(`${this.customerTargetSelected[0]}/${this.mainType[0]}/${this.productName}/${files[0].name}`)
+     this.images.push(`${this.customerTargetSelected[0].toLowerCase()}/${this.mainType[0].toLowerCase()}/${this.productName}/${files[0].name}`)
  
       this.createImage1(files[0]);
     },
@@ -310,7 +312,7 @@ export default {
       console.log(files)
       if (!files.length)
         return;
-      this.images.push(`${this.customerTargetSelected[0]}/${this.mainType[0]}/${this.productName}/${files[0].name}`)
+      this.images.push(`${this.customerTargetSelected[0].toLowerCase()}/${this.mainType[0].toLowerCase()}/${this.productName}/${files[0].name}`)
       this.createImage2(files[0]);
     },
      createImage2(file) {
@@ -329,7 +331,7 @@ export default {
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length)
         return;
-      this.images.push(`${this.customerTargetSelected[0]}/${this.mainType[0]}/${this.productName}/${files[0].name}`) 
+      this.images.push(`${this.customerTargetSelected[0].toLowerCase()}/${this.mainType[0].toLowerCase()}/${this.productName}/${files[0].name}`) 
       this.createImage3(files[0]);
     },
      createImage3(file) {
@@ -348,7 +350,7 @@ export default {
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length)
         return;
-      this.images.push(`${this.customerTargetSelected[0]}/${this.mainType[0]}/${this.productName}/${files[0].name}`)  
+      this.images.push(`${this.customerTargetSelected[0].toLowerCase()}/${this.mainType[0].toLowerCase()}/${this.productName}/${files[0].name}`)  
       this.createImage4(files[0]);
     },
      createImage4(file) {
@@ -367,7 +369,7 @@ export default {
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length)
         return;
-      this.images.push(`${this.customerTargetSelected[0]}/${this.mainType[0]}/${this.productName}/${files[0].name}`)  
+      this.images.push(`${this.customerTargetSelected[0].toLowerCase()}/${this.mainType[0].toLowerCase()}/${this.productName}/${files[0].name}`)  
       this.createImage5(files[0]);
     },
      createImage5(file) {
@@ -390,7 +392,8 @@ export default {
       console.log(this.customerTargetSelected[0])
           this.$store.dispatch('saveProduct',{
             name: pName,
-            type: this.customerTargetSelected[0],
+            groupTarget: this.customerTargetSelected[0],
+            type: this.mainType[0],
             color: this.productColor,
             size: this.productSize,
             description: this.productDescription,

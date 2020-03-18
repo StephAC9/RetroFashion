@@ -5,7 +5,7 @@
                   <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">
                   <div class="cercle">-30</div>      
                </div>
-                <div style="margin-top:10px;height:70px">
+                <div style="margin-top:10px;height:70px;padding:10px">
                     <p class="title"> {{product.productName}}</p>
                 </div>
                <div class="bottom">
