@@ -205,7 +205,7 @@ export default {
       mainOptions: [
             { text: 'Clothes', value: 'Clothes' },
             { text: 'Shoes', value: 'Shoes' },
-            { text: 'Accessoiries', value: 'Accessoiries' }
+            { text: 'Accessories', value: 'Accessories' }
      ],
      clothesOptions: [
             { text: 'New Arrivals', value: 'newArrivals' },
