@@ -217,7 +217,7 @@ export default {
             { text: 'Pull-over', value: 'Pull-Over' },
             { text: 'Jackets', value: 'Jackets' },
             { text: 'Dresses', value: 'Dresses' },
-            { text: 'Squirts', value: 'Squirts' },
+            { text: 'Squirts', value: 'SKirts' },
             { text: 'Swim wear', value: 'Swim wear' },
             { text: 'Underwears', value: 'Underwears' },
             { text: 'Suits', value: 'Suits' },

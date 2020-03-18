@@ -81,7 +81,8 @@ export default {
         flex-basis: 20%;
         min-width: 280px;
         margin: 5px;
-        max-height: 458px;
+        min-height: 380px;
+        background-color: rgb(252, 249, 249);
     }
     .product:hover{
         border: 0.5px solid rgb(240, 234, 234)
