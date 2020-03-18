@@ -5,7 +5,7 @@
                   <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">
                   <div class="cercle">-30</div>      
                </div>
-                <div style="margin-top:10px;height:70px;padding:10px">
+                <div style="margin-top:10px;height:70px">
                     <p class="title"> {{product.productName}}</p>
                 </div>
                <div class="bottom">
@@ -130,6 +130,7 @@ export default {
 }
 .img-container{
   position: relative;
+  max-height: 270px;
 }
 .cercle{
   border-radius: 50%;
