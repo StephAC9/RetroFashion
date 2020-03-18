@@ -22,5 +22,4 @@
         "mongoose": "^5.9.1",
         "random-string-generator": "^1.0.0"
     }
-
 }
