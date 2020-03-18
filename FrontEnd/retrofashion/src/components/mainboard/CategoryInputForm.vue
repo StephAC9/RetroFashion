@@ -53,13 +53,23 @@ export default {
     methods:{
          fetchRelatedCategory(){
              console.log('TargetedGroup:  '+ this.groupType)
-             if(this.groupType == 'Men'){
+             this.$store.dispatch("women/filterProducts",{selected: this.selected})
+           /*   switch(this.groupType){
+                 case'Men':
+                    this.$store.dispatch("men/filterProducts",{selected: this.selected})
+                 break 
+                 case'Women':
+                    this.$store.dispatch("women/filterProducts",{selected: this.selected})
+                 break 
+                 case'Children':
+                    this.$store.dispatch("children/filterProducts",{selected: this.selected})
+                 break   
+             } */
+              /* if(this.groupType == 'Men'){
                 this.$store.dispatch("men/filterProducts",{selected: this.selected})
-             }if(this.groupType == 'Women'){
+             }else if(this.groupType == 'Women'){
                 this.$store.dispatch("women/filterProducts",{selected: this.selected})
-             }if(this.groupType == 'Children'){
-                this.$store.dispatch("children/filterProducts",{selected: this.selected})
-             }
+             } */
         }
     }
 }

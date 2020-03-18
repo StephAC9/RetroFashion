@@ -109,6 +109,9 @@ export default {
     this.$store.dispatch('fetchProductsOnSales')
     this.$store.dispatch('fetchAccessories')
   } */
+  beforeCreate(){
+    this.$store.dispatch('layouts/inHomePage')
+  },
 }
 </script>
 <style  scoped>

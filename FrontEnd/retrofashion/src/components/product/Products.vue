@@ -75,11 +75,13 @@ export default {
         flex-wrap: wrap;
         justify-content: space-evenly;
         flex-basis: 100%;
+        margin-bottom:150px;
     }
     .product{
         flex-basis: 20%;
-        min-width: 300px;
+        min-width: 280px;
         margin: 5px;
+        max-height: 458px;
     }
     .product:hover{
         border: 0.5px solid rgb(240, 234, 234)
@@ -90,8 +92,8 @@ export default {
     }
     
     .category-container{
-      flex-basis: 20%;
-      padding-left: 10px;
+      flex-basis: 25%;
+      padding-left: 5px;
     }
     .product-page{
         flex-basis: 80%;
@@ -145,7 +147,12 @@ export default {
   right: 45px;
   font-size: 40px;
 }
-    @media (max-width: 750px) {
+@media(max-width: 950px){
+    .category-container{
+      flex-basis: 25%;
+    }
+}
+    @media (max-width: 850px) {
         .main-container{
             flex-basis: 100%;
             display: flex;

@@ -13,6 +13,7 @@ import MenProducts from '../views/products/categories/MenProducts'
 import DamProducts from '../views/products/categories/DamProducts'
 import WomenCategory from '../views/products/categories/subcategories/WomenCategory'
 import MenCategory from '../views/products/categories/subcategories/MenCategory'
+import ChildrenCategory from '../views/products/categories/subcategories/ChildrenCategory'
 import Accessories from '../views/products/categories/subcategories/Accessories'
 import Sales from '../views/products/categories/Sales'
 import BestSellers from '../views/products/categories/BestSellers'
@@ -186,11 +187,11 @@ const routes = [{
     }, {
         path: '/women/accessories',
         name: 'Women_Accessories',
-        component: Accessories,
+        component: WomenCategory,
     }, {
         path: '/women/multi categories',
         name: 'Women_multi',
-        component: MenCategory,
+        component: WomenCategory,
     }, {
         path: '/men',
         name: 'men',
@@ -207,7 +208,7 @@ const routes = [{
     }, {
         path: '/men/accessories',
         name: 'Men_Accessories',
-        component: Accessories,
+        component: MenCategory,
     }, {
         path: '/men/clothes/wedding',
         name: 'Men_Wedding',
@@ -260,53 +261,49 @@ const routes = [{
         component: ChildrenProducts
     }, {
         path: '/children/shoes',
-        name: 'Men_Shoes',
-        component: MenCategory,
+        name: 'Children_Shoes',
+        component: ChildrenCategory,
     },
     {
         path: '/children/clothes',
-        name: 'Men_Clothes',
-        component: MenCategory,
+        name: 'Children_Clothes',
+        component: ChildrenCategory,
     }, {
         path: '/children/accessories',
-        name: 'Men_Accessories',
-        component: Accessories,
+        name: 'Children_Accessories',
+        component: ChildrenCategory,
     }, {
         path: '/children/clothes/party',
-        name: 'Men_Party',
-        component: MenCategory,
+        name: 'Children_Party',
+        component: ChildrenCategory,
     }, {
         path: '/children/clothes/tshirts',
-        name: 'Men_T-shirts',
-        component: MenCategory,
+        name: 'Children_T-shirts',
+        component: ChildrenCategory,
     }, {
         path: '/children/clothes/jackets',
-        name: 'Men_Jackets',
-        component: MenCategory,
+        name: 'Children_Jackets',
+        component: ChildrenCategory,
     }, {
         path: '/children/clothes/suits',
-        name: 'Men_Suits',
-        component: MenCategory,
+        name: 'Children_Suits',
+        component: ChildrenCategory,
     }, {
         path: '/children/clothes/trousers',
-        name: 'Men_Trousers',
-        component: MenCategory,
+        name: 'Children_Trousers',
+        component: ChildrenCategory,
     }, {
         path: '/children/shoes/sneakers',
-        name: 'Men_Sneakers',
-        component: MenCategory,
+        name: 'Children_Sneakers',
+        component: ChildrenCategory,
     }, {
         path: '/children/shoes/outdours',
-        name: 'Men_Outdoors',
-        component: MenCategory,
-    }, {
-        path: '/children/shoes/business shoes',
-        name: 'Men_Business shoes',
-        component: MenCategory,
+        name: 'Children_Outdoors',
+        component: ChildrenCategory,
     }, {
         path: '/children/multi categories',
         name: 'Children_multi',
-        component: MenCategory,
+        component: ChildrenCategory,
     },
     {
         path: '/best sellers',

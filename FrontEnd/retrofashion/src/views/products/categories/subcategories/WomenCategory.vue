@@ -68,6 +68,15 @@ export default {
     ...mapGetters('layouts',['isWomenPage']),
 /*     ...mapGetters('categories',['womenPagecategories']),
  */  },
+
+    watch:{
+        filteredProducts(v){
+            if(v !== null || v !== undefined){
+                console.log(this.filteredProducts)
+            }
+        }
+    }
+
     
 }
 </script>

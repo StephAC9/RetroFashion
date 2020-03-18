@@ -7,8 +7,6 @@ const state = {
     products: [],
     shoes: [],
     clothes: [],
-    singleCategoryFilterProducts: [],
-    multiCategoriesFilterProducts: [],
     filteredProducts: [],
 
 }
@@ -17,8 +15,6 @@ const getters = {
     shoes: state => state.products.filter(product => !product.productCategories.includes('Shoes')),
     clothes: state => state.products.filter(product => !product.productCategories.includes('Clothes')),
     filteredProducts: state => state.filteredProducts,
-    singleCategoryFilterProducts: state => state.singleCategoryFilterProducts,
-    multiCategoriesFilterProducts: state => state.multiCategoryFilterProducts,
 
 }
 const actions = {
@@ -55,78 +51,6 @@ const actions = {
             console.log(err)
         }
     },
-    /*   async fetchSingleCategory({ commit }, payload) {
-          try {
-              const categoryProducts = await axios({
-                  method: 'POST',
-                  url: 'http://localhost:4300/graphql',
-                  data: {
-                      query: `query productSingleFilter($groupTarget: String!,$category: String!){
-                          productSingleFilter(groupTarget:$groupTarget,category:$category){
-                              id
-                              productName
-                              productImages
-                              productTargetedGroup
-                              productType
-                              productCategories
-                              productDescription
-                              productColor
-                              productSize
-                              productPrice
-                              productEntryDate
-                          }             
-                      }`,
-                      variables: {
-                          groupTarget: 'Women',
-                          category: payload.selectedCategory,
-                      }
-                  },
-
-              })
-              const categoryProductList = categoryProducts.data.data.productSingleFilter
-              console.log(categoryProductList)
-              commit('SET_SINGLE_FILTER_PRODUCTS', categoryProductList)
-              router.push({ name: 'Women_' + payload.selectedCategory })
-          } catch (err) {
-              console.log(err)
-          }
-      },
-      async fetchMultipleCategories({ commit }, payload) {
-          try {
-              const categoryProducts = await axios({
-                  method: 'POST',
-                  url: 'http://localhost:4300/graphql',
-                  data: {
-                      query: `query productMultiFilter($groupTarget: String!,$categories: String!){
-                          productMultiFilter(groupTarget:$groupTarget,categories:$categories){
-                              id
-                              productName
-                              productImages
-                              productTargetedGroup
-                              productType
-                              productCategories
-                              productDescription
-                              productColor
-                              productSize
-                              productPrice
-                              productEntryDate
-                          }             
-                      }`,
-                      variables: {
-                          groupTarget: 'Women',
-                          categories: payload.selected,
-                      }
-                  },
-
-              })
-              const categoryProductList = categoryProducts.data.data.productSingleFilter
-              console.log(categoryProductList)
-              commit('SET_MULTI_FILTER_PRODUCTS', categoryProductList)
-              router.push({ name: 'Women_multi' })
-          } catch (err) {
-              console.log(err)
-          }
-      }, */
     async filterProducts({ commit }, payload) {
         console.log(payload)
         try {
@@ -158,15 +82,17 @@ const actions = {
             })
             const categoryProductList = categoryProducts.data.data.productsFilter
             console.log(categoryProductList)
-            commit('SET_FILTERED_PRODUCTS', categoryProductList)
+            commit('RESET_FILTERED_PRODUCTS', null)
             const selected = payload.selected
             console.log(selected.length)
             let isMulti = selected.length > 1
             console.log(isMulti)
             if (isMulti == false) {
+                commit('SET_FILTERED_PRODUCTS', categoryProductList)
                 router.push({ name: 'Women_' + payload.selected[0] })
-            } else {
-                router.push({ name: 'Women_multi' })
+            } else if (isMulti == true) {
+                commit('SET_FILTERED_PRODUCTS', categoryProductList)
+                router.push('/women/multi categories')
             }
         } catch (err) {
             console.log(err)
@@ -175,9 +101,8 @@ const actions = {
 }
 const mutations = {
     SET_PRODUCTS: (state, payload) => state.products = payload,
+    RESET_FILTERED_PRODUCTS: (state, payload) => state.filteredProducts = payload,
     SET_FILTERED_PRODUCTS: (state, payload) => state.filteredProducts = payload,
-    /* SET_SINGLE_FILTER_PRODUCTS: (state, payload) => state.singleCategoryFilterProducts = payload,
-    SET_MULTI_FILTER_PRODUCTS: (state, payload) => state.multiCategoryFilterProducts = payload, */
 }
 
 
