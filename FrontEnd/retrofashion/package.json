@@ -17,6 +17,7 @@
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-persistent-state": "^0.2.1",
+    "vue-range-slider": "^0.6.0",
     "vue-router": "^3.1.5",
     "vue-select": "^3.9.0",
     "vuex": "^3.1.2",

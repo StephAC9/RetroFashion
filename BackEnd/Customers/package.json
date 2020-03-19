@@ -20,6 +20,7 @@
         "graphql": "^14.6.0",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.9.1",
-        "random-string-generator": "^1.0.0"
+        "random-string-generator": "^1.0.0",
+        "vue-range-slider": "^0.6.0"
     }
 }
