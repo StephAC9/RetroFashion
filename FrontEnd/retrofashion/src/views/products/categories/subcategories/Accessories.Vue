@@ -156,6 +156,7 @@ export default {
         margin-bottom: 200px;
         padding: 10px ;
         position: relative;
+        flex-wrap: wrap;
        
      
         
