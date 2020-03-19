@@ -4,7 +4,7 @@
         <carousel-3d :controls-visible="true" :clickable="false">
             <slide v-for="(slide, i) in slides" :index="i" v-bind:key="slide">
                 <figure>
-                    <img src="https://placehold.it/360x270">
+                    <img :src="require('../../../../../../Images/${product.productImages}')" alt="img">
                     <figcaption>
                         The sky is the limit only for those who aren't afraid to fly!
                         The sky is the limit only for those who aren't afraid to fly!
@@ -18,39 +18,47 @@
 
 <script>
 
-    /*import DatatableFactory from "vuejs-datatable"
-    Vue.use(DatatableFactory)
-    window.Vue = Vue;
-
-    new Vue({
-        el: '#example',
-        data: {
-            slides: 7
-        },
-        components: {
-            'carousel-3d': Carousel3d.Carousel3d,
-            'slide': Carousel3d.Slide
-        }
-    })*/
-
     //import { Carousel3d, Slide } from 'vue-carousel-3d';
     import Vue from 'vue';
+
     import { Carousel3d, Slide } from 'vue-carousel-3d';
 
     Vue.use(Carousel3d);
+    import { mapGetters } from 'vuex'
 
     export default {
         name: 'ProductSimilarType',
 
 
+
         components: {
             Carousel3d,
-            Slide
+            Slide,
+            ...mapGetters('women', ['products'])
+        },
+        watch: {
+
+            products(value) {
+                if (value !== null || value !== underfined) {
+                    this.product = this.products[0]
+                    console.log(this.products)
+                }
+            }
+        },
+        mounted() {
+            console.log('mounted')
+            this.product = this.products
         },
 
         data() {
             return {
-                slides: 7
+                slides: 7,
+
+                product: null,
+                /*  images: [
+                     { }
+                 ] */
+
 
             };
         },
