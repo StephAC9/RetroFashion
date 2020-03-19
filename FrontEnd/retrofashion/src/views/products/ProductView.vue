@@ -37,6 +37,8 @@
 
   .product-detail {
     flex-basis: 45%;
+
+
   }
 
   .x {
