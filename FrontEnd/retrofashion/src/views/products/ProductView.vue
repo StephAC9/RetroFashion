@@ -1,10 +1,10 @@
 <template>
   <div class="product-view">
     <div class="product-detail">
-      <ProductImagesSlider></ProductImagesSlider>
+      <ProductImagesSlider :product="product"></ProductImagesSlider>
     </div>
     <div class="product-detail x">
-      <ProductDetails></ProductDetails>
+      <ProductDetails :product="product"></ProductDetails>
       <ProductDescription class="element"></ProductDescription>
     </div>
   </div>
@@ -14,17 +14,22 @@
   import ProductImagesSlider from '../../components/product-slider/ProductImagesSlider'
   import ProductDetails from '../../components/product/ProductDetails'
   import ProductDescription from '../../components/product/ProductDescription'
-
+  import {mapGetters} from 'vuex'
 
   export default {
+    name: 'ProductView',
     components: { ProductImagesSlider, ProductDetails, ProductDescription },
     data() {
       return {
-
       }
-
     },
-    name: 'ProductView'
+    computed:{
+      ...mapGetters('product',['product'])
+    },
+    created(){
+      console.log(this.product)
+    }
+
   } 
 </script>
 <style scoped>

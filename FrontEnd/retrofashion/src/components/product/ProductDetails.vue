@@ -3,22 +3,15 @@
     <div class="container mt-15 pt-15">
       <div class="row">
         <div class="container mt-15 pt-15">
-          <h3 class="producttag">{{item}}</h3>
+          <h3 class="producttag">{{product.productName}}</h3>
 
         </div>
       </div>
       <div class="row">
         <div class="container mt-15 pt-15">
-          <label id="material-label" for="material">Product Material: Black Cotton </label>
+          <h1 class="totaltag">{{product.productPrice}} SEK</h1>
         </div>
       </div>
-
-      <div class="row">
-        <div class="container mt-15 pt-15">
-          <h1 class="totaltag">300 SEK</h1>
-        </div>
-      </div>
-
       <div class="row">
         <div class="container mt-15 pt-15">
           <label id="sizelabel" for="size">Size</label>
@@ -41,7 +34,7 @@
         </div>
       </div>
 
-      <button class="btn btn-primary" @click="addToCart">Add To Cart</button>
+      <button class="btn btn-primary" @click="addToCart()">Add To Cart</button>
 
       <div class="icon-container">
         <i class="fa fa-cc-visa" style="color:navy;"></i>
@@ -63,6 +56,7 @@
 <script>
 
   export default {
+    props:['product'],
     data() {
       return {
         cart: {
@@ -108,17 +102,17 @@
       checkout() {
 
         this.$router.push("/payment");
+      },
+      addToCart(){
+        console.log('Add to cart')
+        this.$store.dispatch('product/sendToCart',{product:this.product})
       }
     },
     mounted() {
-      let item = "Shoes"
-      this.item = item
-
-      if (item == "Clothes") {
-        console.log(item)
+      if (this.product.productType == "Clothes") {
         this.bool1 = true
         this.bool2 = false
-      } else if (item == "Shoes") {
+      } else if (this.product.productType == "Shoes") {
 
         this.bool1 = false
         this.bool2 = true

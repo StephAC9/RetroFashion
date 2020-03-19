@@ -1,9 +1,9 @@
 <template>
   <div>
     <hooper :settings="hooperSettings" style="height: 600px; width:600px; ">
-      <slide v-for="(slide, indx) in images" :key="indx" :index="indx">
+      <slide v-for="(slide, indx) in product.productImages" :key="indx" :index="indx">
         <img style="width: 100%; height: 100%;" :src="
-            require(`../../../../Images/women/clothes/Dickies Dark Denim Blue Bootcut Jeans/${slide.src}`)
+            require(`../../../../Images/${slide}`)
           " />
       </slide>
 
@@ -34,6 +34,7 @@
       HooperNavigation,
       HooperProgress
     },
+    props:['product'],
     data() {
       return {
         images: [

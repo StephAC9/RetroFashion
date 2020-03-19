@@ -92,7 +92,8 @@ const routes = [{
     {
         path: '/product',
         name: 'product',
-        component: ProductView
+        component: ProductView,
+        props: true
     },
     {
         path: '/clothes',

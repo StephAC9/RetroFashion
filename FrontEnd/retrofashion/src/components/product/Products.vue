@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="products-container">
-                <div class="product" @click="goToProductView" v-for="(product,index) in products" :key="index"
+                <div class="product" @click="goToProductView(product)" v-for="(product,index) in products" :key="index"
                     v-bind:id="index">
                     <productItem :product="product"></productItem>
                 </div>
@@ -70,8 +70,9 @@
             closeFilter() {
                 document.getElementById("categoriesFilter").style.width = "0%";
             },
-            goToProductView() {
-                this.$router.push({ name: "product" })
+            goToProductView(product) {
+                console.log(product)
+                this.$store.dispatch('product/setProduct',{product})
             }
         }
     }

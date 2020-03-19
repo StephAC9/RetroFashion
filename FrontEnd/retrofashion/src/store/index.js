@@ -4,8 +4,7 @@ import router from '../router'
 import men from './modules/men'
 import women from './modules/women'
 import layouts from './modules/layouts'
-/* import children from './modules/children'
- */
+import product from './modules/product'
 import accessories from './modules/accessories'
 import favorites from './modules/favorites'
 import categories from './modules/categories'
@@ -23,7 +22,7 @@ export default new Vuex.Store({
         men,
         women,
         layouts,
-        /* children, */
+        product,
         accessories,
         categories,
         favorites
