@@ -1,12 +1,10 @@
 <template>
   <div class="checkout">
     <div class="container mt-15 pt-15">
-      <h1>This is a add to cart page</h1>
-
-      <h2 class="py-4">PRODUCT</h2>
       <div class="row">
         <div class="container mt-15 pt-15">
-          <h3 class="producttag">Product type: Dress</h3>
+          <h3 class="producttag">{{item}}</h3>
+
         </div>
       </div>
       <div class="row">
@@ -24,8 +22,20 @@
       <div class="row">
         <div class="container mt-15 pt-15">
           <label id="sizelabel" for="size">Size</label>
-          <select type="text" id="size" name="cart[size]" v-model="cart.size" placeholder="Select a month">
-            <option v-for="size in sizes" v-bind:key="size.id">
+          <select v-if="bool2" type="text" id="size" name="cart[size]" v-model="cart.size" placeholder="Select a month">
+            <option v-for="size in sizes[1]" v-bind:key="size.id">
+              {{ size.value }}</option>
+          </select>
+
+          <select v-else-if="bool1" type="text" id="size" name="cart[size]" v-model="cart.size"
+            placeholder="Select a month">
+            <option v-for="size in sizes[0]" v-bind:key="size.id">
+              {{ size.value }}</option>
+          </select>
+
+          <select v-else-if="!bool1 && !bool2" type="text" id="size" name="cart[size]" v-model="cart.size"
+            placeholder="Select a month">
+            <option v-for="size in sizes[2]" v-bind:key="size.id">
               {{ size.value }}</option>
           </select>
         </div>
@@ -59,16 +69,38 @@
           size: ""
 
         },
+        item: "clothes",
+        bool1: false,
+        bool2: false,
+
         sizes: [
-          { value: "XXS", id: 1 },
-          { value: "XS", id: 2 },
-          { value: "S", id: 3 },
-          { value: "M", id: 4 },
-          { value: "L", id: 5 },
-          { value: "XL", id: 6 },
-          { value: "XXL", id: 7 }
+
+          [
+            { value: "XXS", id: 1 },
+            { value: "XS", id: 2 },
+            { value: "S", id: 3 },
+            { value: "M", id: 4 },
+            { value: "L", id: 5 },
+            { value: "XL", id: 6 },
+            { value: "XXL", id: 7 }
+
+          ],
+          [
+            { value: "36", id: 1 },
+            { value: "37", id: 2 },
+            { value: "38", id: 3 },
+            { value: "39", id: 4 },
+            { value: "40", id: 5 },
+            { value: "41", id: 6 },
+            { value: "42", id: 7 }
+
+          ],
+          [
+            { value: "One-Size", id: 1 }
+          ]
 
         ]
+
       };
     },
 
@@ -77,6 +109,26 @@
 
         this.$router.push("/payment");
       }
+    },
+    mounted() {
+      let item = "Shoes"
+      this.item = item
+
+      if (item == "Clothes") {
+        console.log(item)
+        this.bool1 = true
+        this.bool2 = false
+      } else if (item == "Shoes") {
+
+        this.bool1 = false
+        this.bool2 = true
+      }
+      else {
+        this.bool1 = false
+        this.bool2 = false
+
+      }
+
     }
   };
 </script>
@@ -85,7 +137,7 @@
   @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 
   .btn {
-    background-color: #0d0d11;
+    background-color: rgb(247, 73, 125);
     color: white;
     padding: 12px;
     margin: 10px 0;
@@ -97,7 +149,7 @@
   }
 
   .btn:hover {
-    background-color: #df3721;
+    background-color: rgb(247, 73, 142);
   }
 
   #totallabel {
@@ -154,5 +206,12 @@
     display: block;
     float: left;
     font-size: 27px;
+  }
+
+  @media(max-width: 950px) {
+    .checkout {
+      width: 1200px;
+    }
+
   }
 </style>
