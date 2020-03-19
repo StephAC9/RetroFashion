@@ -1,8 +1,9 @@
 <template>
-     <div class="product-container">
+     <div class="product-container" :id="`product_${product.id}`">
+       <div>
                <div class="img-container" @mouseover="first = !first" @mouseleave="first = true">
-                  <img style="width: 100%; height:100%;" v-if="first" :src="require(`../../../../Images/${product.productImages[0]}`)" alt="img">  
-                  <img style="width: 100%; height:100%;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">
+                  <img style="width: 100%; height:250px" v-if="first" :src="require(`../../../../Images/${product.productImages[0]}`)" alt="img">  
+                  <img style="width: 100%; height:250px;" v-if="!first"  :src="require(`../../../../Images/${product.productImages[1]}`)" alt="img">
                   <div class="cercle">-30</div>      
                </div>
                 <div class="details">
@@ -16,13 +17,18 @@
                  </div>
                  <div class="bottom-el icons">
                    <button class="cart"> <i class="fa fa-cart-arrow-down"  @click="addTocart(product.id)"></i> </button>
-                   <button class="heart-icon"><i class="fa fa-heart" :style="tofavorites ? { 'color': '#e13' } : null"  @click="manageFavorites(product.id)"></i></button>
+                   <button class="heart-icon">
+                     <slot></slot>
+                   </button>
                 </div>
               </div>
-                </div>
+          </div>
+
+       </div>
       </div>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 export default {
     name:'ProductItem',
     props:['product'],
@@ -34,24 +40,27 @@ export default {
             lineThrough:'line-through'
         }
     },
+    computed:{
+      ...mapGetters('favorites',['inToFavotives'])
+    },
    
     methods:{
-            manageFavorites(productId){   
-            this.tofavorites = !this.tofavorites
-             if(this.tofavorites == true){
-                console.log('Add  '+this.tofavorites)
-                //Add to fav
+       /* manageFavorites(productId){   
+         this.tofavorites = !this.tofavorites
+         console.log(this.tofavorites)
+         this.$store.dispatch('favorites/setInFavorite',{status: this.tofavorites})
+             
+             if(this.inToFavotives == true){
+                console.log('Add  '+this.inToFavotives)
                 this.$store.dispatch('favorites/addToFavorites',{productId: productId})
             }else{
-                console.log('Remove '+this.tofavorites)
-                //Remove from fav
+                console.log('Remove '+this.inToFavotives)
                 this.$store.dispatch('favorites/removeFromFavorites',{productId: productId})
             } 
-            },  
-
+            }, 
             removeProduct(productId){
                 this.$store.dispatch('freezeProduct',{productId: productId})
-            }
+            } */
     }
  
 }
@@ -62,7 +71,6 @@ export default {
       flex-direction: column;
       justify-content: space-evenly;
       padding: 2px;
-      padding-bottom: 10px;
       background-color: rgb(252, 249, 249);
       width: 270px;
     }
@@ -116,10 +124,11 @@ export default {
 
     .img-container{
       position: relative;
-      flex-basis: 60%;
+      height: 60%;
+
     }
     .details{
-      flex-basis: 40%;
+      height: 40%;
     }
     .cercle{
       border-radius: 50%;

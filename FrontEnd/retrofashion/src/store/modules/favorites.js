@@ -15,59 +15,30 @@ const getters = {
 const actions = {
     async addToFavorites({ commit }, payload) {
         const tp = localStorage.getItem('cookie')
+
         if (tp) {
-            //create and array to check if it's already added. In that case you remove it 
-            //from the array, you create substrings and send back everything to cookies
-            const cookieArray = tp.split(',')
-            var used = ''
-            cookieArray.forEach(id => {
-                if (id == payload.productId) {
-                    used = id
-                }
-            })
-            const newCookiesArray = cookieArray.filter(id => id !== used)
-            console.log(newCookiesArray)
-            localStorage.setItem('cookie', tp + ',' + payload.productId)
-            commit('ADD_TO_FAVORITES', 'Added!')
             console.log(tp)
+            localStorage.setItem('cookie', tp + ',' + payload.productId)
+            const newValue = localStorage.getItem('cookie')
+            console.log(newValue)
+            commit('ADD_TO_FAVORITES', 'Added!')
         } else {
             localStorage.setItem('cookie', payload.productId)
         }
 
-        const token = localStorage.getItem('token')
-        if (token) {
-            try {
-                const memberFavs = await axios({
-                    method: 'POST',
-                    url: 'http://localhost:4200/graphql',
-                    headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('token')
-                    },
-
-                    data: {
-                        query: `mutation addProductToFavorites($productId: ID!){
-                        addProductToFavorites(productId:$productId){
-                            id
-                            favoritesIdList
-                        }             
-                    }`,
-                        variables: {
-                            productId: payload.productId,
-                        }
-                    },
-                })
-                const memberFavsList = memberFavs.data.data.addProductToFavorites.favoritesIdList
-                console.log(memberFavsList)
-                commit('ADD_TO_FAVORITES', 'Added!')
-            } catch (err) {
-                console.log(err)
-            }
-        }
-
     },
-    /* async removeFromFavorites({ commit }, payload) {
-
-    }, */
+    setInFavorite({ commit }, payload) {
+        commit('SET_IN_FAV', payload.status)
+    },
+    async removeFromFavorites({ commit }, payload) {
+        const favList_cookies = localStorage.getItem('cookie')
+        const array = favList_cookies.split(',')
+        console.log(array)
+        console.log(array[0])
+        const x = array.filter(element => element !== payload.productId)
+        console.log(x)
+        commit('REMOVE_FROM_FAVORITES', 'Removed!')
+    },
 
     async fetchFavorites({ commit }) {
         const token = await localStorage.getItem('token')
@@ -159,7 +130,9 @@ const actions = {
 }
 const mutations = {
     ADD_TO_FAVORITES: (state, payload) => state.status = payload,
-    SET_FAV_PRODUCTS: (state, payload) => state.favorites = payload
+    SET_FAV_PRODUCTS: (state, payload) => state.favorites = payload,
+    REMOVE_FROM_FAVORITES: (state, payload) => state.status = payload,
+    SET_IN_FAV: (state, payload) => state.inToFavotives = payload,
 }
 
 

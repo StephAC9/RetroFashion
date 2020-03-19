@@ -27,14 +27,17 @@
             </div>
         </div> 
         <div class="products-container">
-            <div class="product" v-for="(product,index) in products" :key="index" v-bind:id="index">
-                <productItem :product = "product"></productItem> 
+            <div @click="gotoProduct" class="product" v-for="(product,index) in products" :key="index" v-bind:id="index">
+                <productItem  :product = "product">
+                    <i class="fa fa-heart" ></i>
+                </productItem> 
             </div> 
         </div> 
     </div>
 </div>
 </template>
 <script>
+import {mapGetters} from 'vuex'
 import ProductItem from './ProductItem'
 import CategoriesBoard from '../mainboard/CategoriesBoard'
 export default {
@@ -50,11 +53,22 @@ export default {
         categories: {
             type: Array,
             required: true
-        }
+        },
     },
+    data:()=>({
+        tofavorites: false 
+    }),
     components:{
         ProductItem,
         CategoriesBoard
+    },
+    computed:{
+        ...mapGetters('favorites',['inToFavotives']),
+         inFav : function  isInFavorite(id){
+                const cookie = localStorage.getItem('cookie')
+                const arr = cookie.split(',')
+                return arr.includes(id)
+            }
     },
     mounted(){
         console.log(this.products)
@@ -65,7 +79,33 @@ export default {
       },
       closeFilter() {
         document.getElementById("categoriesFilter").style.width = "0%";
-      }
+      },
+     /*  manageFavorites(productId){   
+         this.tofavorites = !this.tofavorites
+         console.log(this.isInFavorite(productId))
+         this.$store.dispatch('favorites/setInFavorite',{status: this.isInFavorite(productId)})
+             
+             if(this.isInFavorite(productId) == true){
+                console.log('Add  '+this.isInFavorite(productId))
+                this.$store.dispatch('favorites/addToFavorites',{productId: productId})
+            }else{
+                console.log('Remove '+this.isInFavorite(productId))
+                this.$store.dispatch('favorites/removeFromFavorites',{productId: productId})
+            } 
+            },  */
+            removeProduct(productId){
+                this.$store.dispatch('freezeProduct',{productId: productId})
+            },
+            isInFavorite(id){
+                const cookie = localStorage.getItem('cookie')
+                
+                return cookie.includes(id)
+                
+            },
+            gotoProduct(){
+                this.$router.push({name:'product'})
+            }
+        
     }
 }
 </script>

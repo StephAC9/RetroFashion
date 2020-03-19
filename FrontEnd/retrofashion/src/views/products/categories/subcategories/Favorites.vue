@@ -26,6 +26,7 @@ export default {
      computed:{
     ...mapGetters('favorites',['myFavorites']),
     ...mapGetters('layouts',['isWomenPage']),
+    ...mapGetters('favorites',['inToFavotives'])
     },
 
         watch:{
