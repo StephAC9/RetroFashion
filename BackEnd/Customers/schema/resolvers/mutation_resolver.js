@@ -255,14 +255,14 @@ const Mutation = new GraphQLObjectType({
         addProductToFavorites: {
             type: type.MemberType,
             args: {
-                memberId: { type: new GraphQLNonNull(GraphQLID) },
+                //memberId: { type: new GraphQLNonNull(GraphQLID) },
                 productId: { type: new GraphQLNonNull(GraphQLID) }
             },
             resolve: async(parent, args, req) => {
-                /*  if (!req.memberIsAuth) {
-                     throw new Error('errorMessage.unAuthenticated')
-                 } */
-                const member = await Member.findById(args.memberId)
+                if (!req.memberIsAuth) {
+                    throw new Error('errorMessage.unAuthenticated')
+                }
+                const member = await Member.findById(req.memberId)
                 member.favoritesIdList.push(args.productId)
                 return member.save()
             }
@@ -271,14 +271,14 @@ const Mutation = new GraphQLObjectType({
         removeProductFromFavorites: {
             type: type.MemberType,
             args: {
-                memberId: { type: new GraphQLNonNull(GraphQLID) },
+                //memberId: { type: new GraphQLNonNull(GraphQLID) },
                 productId: { type: new GraphQLNonNull(GraphQLID) }
             },
             resolve: async(parent, args, req) => {
-                /*  if (!req.adminIsAuth) {
-                     throw new Error('errorMessage.unAuthenticated')
-                 } */
-                const member = await Member.findById(args.memberId)
+                if (!req.adminIsAuth) {
+                    throw new Error('errorMessage.unAuthenticated')
+                }
+                const member = await Member.findById(req.memberId)
                 member.favoritesIdList.filter(id => id !== args.productId)
 
                 return member.save()

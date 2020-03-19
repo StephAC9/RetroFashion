@@ -15,8 +15,9 @@ import WomenCategory from '../views/products/categories/subcategories/WomenCateg
 import MenCategory from '../views/products/categories/subcategories/MenCategory'
 import ChildrenCategory from '../views/products/categories/subcategories/ChildrenCategory'
 import Accessories from '../views/products/categories/subcategories/Accessories'
-import Sales from '../views/products/categories/Sales'
-import BestSellers from '../views/products/categories/BestSellers'
+import Sales from '../views/products/categories/subcategories/Sales'
+import Favorites from '../views/products/categories/subcategories/Favorites'
+import BestSellers from '../views/products/categories/subcategories/BestSellers'
 import Clothes from '../views/products/categories/subcategories/Clothes'
 import Shoes from '../views/products/categories/subcategories/Shoes'
 
@@ -314,6 +315,11 @@ const routes = [{
         path: '/sales',
         name: 'sales',
         component: Sales
+    },
+    {
+        path: '/favorites',
+        name: 'favorites',
+        component: Favorites
     }
 ]
 

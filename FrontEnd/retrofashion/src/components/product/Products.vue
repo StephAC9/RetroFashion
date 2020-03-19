@@ -70,36 +70,33 @@ export default {
 }
 </script>
 <style scoped>
+  .main-container{
+      display: flex;
+  }
+  .product-page{
+        flex-basis: 80%;
+        display: flex;
+        flex-direction: column;
+        border-left: 0.5px solid rgb(230, 229, 227);
+        border-right: 0.5px solid rgb(230, 229, 227);
+  }
     .products-container{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly;
-        flex-basis: 100%;
+        justify-content: space-around;
         margin-bottom:150px;
     }
     .product{
-        flex-basis: 20%;
-        min-width: 280px;
-        margin: 5px;
-        min-height: 380px;
-        background-color: rgb(252, 249, 249);
+        flex-basis: 30%;
+        margin-bottom: 10px;
     }
     .product:hover{
         border: 0.5px solid rgb(240, 234, 234)
-    }
-    .main-container{
-      display: flex;
-      justify-content: space-between;
     }
     
     .category-container{
       flex-basis: 25%;
       padding-left: 5px;
-    }
-    .product-page{
-        flex-basis: 80%;
-        display: flex;
-        flex-direction: column;
     }
     .filter{
         display: none;
@@ -148,9 +145,17 @@ export default {
   right: 45px;
   font-size: 40px;
 }
+@media(max-width: 1100px){
+    .products-container{
+        justify-content: space-around;
+    }
+}
 @media(max-width: 950px){
     .category-container{
       flex-basis: 25%;
+    }
+    .products-container{
+        justify-content: space-around;
     }
 }
     @media (max-width: 850px) {

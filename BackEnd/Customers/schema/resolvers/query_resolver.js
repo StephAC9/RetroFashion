@@ -200,14 +200,12 @@ const RootQuery = new GraphQLObjectType({
         },
         getFavorites: {
             type: new GraphQLList(type.ProductType),
-            args: { memberId: { type: GraphQLID } },
+            //args: { memberId: { type: GraphQLID } },
             resolve: async(parent, args) => {
-                /* if (!req.memberIsAuth) {
+                if (!req.memberIsAuth) {
                     throw new Error(errorMessage.unAuthenticated)
-                } 
+                }
                 let member = await Member.findById(req.memberId)
-                */
-                let member = await Member.findById(args.memberId)
                 const productsId = member.favorites
                 const productsInFavorites = []
                 await productsId.forEach(id => {

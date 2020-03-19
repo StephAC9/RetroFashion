@@ -20,9 +20,11 @@
                     <popover layout = 'login'> </popover>
                   <div class="desciption">Login</div>
                 </div>
-                <div class="nav-icon favorites">
-                  <button class="btn-icon" >
-                    <i class='fa fa-gratipay _icon' style="margin-left:5px"></i>
+                <div class="nav-icon favorites" @click="goToFavorites">
+                  <button class="btn-icon">
+                    <i class='fa fa-gratipay _icon' style="margin-left:5px">
+                      
+                    </i>
                   </button>
                   <div class="desciption" >Favorites</div>
                 </div>
@@ -54,6 +56,12 @@ export default {
     items: true,
     placement:'bottomleft',
   }),
+
+  methods:{
+    goToFavorites(){
+      this.$store.dispatch('favorites/fetchFavorites')
+    }
+  }
 }
 </script>
 <style scoped>

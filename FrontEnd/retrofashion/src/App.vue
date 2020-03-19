@@ -36,7 +36,12 @@ export default {
     ...mapGetters('layouts',['isWomenPage']),
     ...mapGetters('layouts',['isChildrenPage']),
   },
+  created(){
+  },
 
+  mounted(){
+    console.log(this.isMenPage)
+  },
   watch:{
     isMenPage(v){
       console.log(v)
@@ -45,9 +50,8 @@ export default {
       }
     }
   },
-  mounted(){
-    console.log(this.isMenPage)
-  }
+
+
 
  
 }

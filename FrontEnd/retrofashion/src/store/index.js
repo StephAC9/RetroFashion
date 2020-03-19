@@ -7,6 +7,7 @@ import layouts from './modules/layouts'
 /* import children from './modules/children'
  */
 import accessories from './modules/accessories'
+import favorites from './modules/favorites'
 import categories from './modules/categories'
 import createPersistedState from 'vuex-persistedstate'
 
@@ -24,7 +25,8 @@ export default new Vuex.Store({
         layouts,
         /* children, */
         accessories,
-        categories
+        categories,
+        favorites
     },
     router
 })
