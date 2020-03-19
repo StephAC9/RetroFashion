@@ -19,7 +19,6 @@
 
       <div class="row-desc">
         <div class="container mt-15 pt-15">
-          <label for="goto"><span style="color: #df3721;"> GOTO </span></label>
           <button class="btn btn-primary" @click="productCategory">Product Categories</button>
           <button class="btn btn-primary" @click="productType">Product Type</button>
 
