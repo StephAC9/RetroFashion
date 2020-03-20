@@ -1,8 +1,8 @@
 <template>
   <div>
-    <hooper :settings="hooperSettings" style="height: 600px; width:600px; ">
-      <slide v-for="(slide, indx) in product.productImages" :key="indx" :index="indx">
-        <img style="width: 100%; height: 100%;" :src="
+    <hooper class="product-images" :settings="hooperSettings" >
+      <slide  v-for="(slide, indx) in product.productImages" :key="indx" :index="indx">
+        <img style="width: 450px; height: 500px;" :src="
             require(`../../../../Images/${slide}`)
           " />
       </slide>
@@ -63,8 +63,11 @@
   };
 </script>
 <style scoped>
-  .product-images.container {
-    height: 640px;
-    width: 500px;
-  }
+.product-images{
+  height: 500px;
+  max-width: 500px;
+  text-align: center;
+  outline: none;
+}
+  
 </style>

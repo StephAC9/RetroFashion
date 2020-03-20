@@ -93,22 +93,13 @@
           </div>
         </div>
       </div>
-<!--       <div class="right"></div> 
- --></div>
+</div>
 </template>
 
 <script>
-//import {mapGetters} from 'vuex'
 export default {
   name: 'Home',
-  /* created(){
-    this.$store.dispatch('women/fetchWomenProducts')
-    this.$store.dispatch('men/fetchMenProducts')
-    this.$store.dispatch('fetchClothesProducts')
-    this.$store.dispatch('fetchShoesProducts')
-    this.$store.dispatch('fetchProductsOnSales')
-    this.$store.dispatch('fetchAccessories')
-  } */
+
   beforeCreate(){
     this.$store.dispatch('layouts/inHomePage')
   },

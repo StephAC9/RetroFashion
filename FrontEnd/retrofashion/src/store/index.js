@@ -2,6 +2,7 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 import router from '../router'
 import men from './modules/men'
+import cart from './modules/cart'
 import women from './modules/women'
 import layouts from './modules/layouts'
 import product from './modules/product'
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     ],
     modules: {
         men,
+        cart,
         women,
         layouts,
         product,
