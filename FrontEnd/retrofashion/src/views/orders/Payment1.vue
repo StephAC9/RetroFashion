@@ -1,13 +1,14 @@
 <template>
   <div class="Payment">
-    <h1>Payment1</h1>
+    <PaymentCustomerDetails></PaymentCustomerDetails>
   </div>
 </template>
 <script>
+import PaymentCustomerDetails from "../../components/payment/PaymentCustomerDetails";
 export default {
-    name:'Payment'
-}
+  name: "Payment",
+  components: { PaymentCustomerDetails }
+};
 </script>
 <style scoped>
-
 </style>
