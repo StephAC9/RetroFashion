@@ -1,7 +1,6 @@
 <template>
   <div class="checkout">
     <div class="container mt-15 pt-15">
-      <h1>This is an checkout page</h1>
 
       <h2 class="py-4">YOUR ORDER</h2>
       <div class="row">
@@ -28,7 +27,7 @@
           </label>
         </div>
       </div>
-      <button class="btn btn-primary" @click="checkout">CheckOut</button>
+      <button class="btn" @click="checkout">CheckOut</button>
 
       <div class="icon-container">
         <i class="fa fa-cc-visa" style="color:navy;"></i>
@@ -77,7 +76,7 @@ export default {
 <style scoped>
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 .btn {
-  background-color: #0d0d11;
+  background: rgb(247, 73, 125);
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -89,7 +88,8 @@ export default {
 }
 
 .btn:hover {
-  background-color: #df3721;
+  background: rgb(248, 79, 130);
+  color: white
 }
 #totallabel {
   float: right;

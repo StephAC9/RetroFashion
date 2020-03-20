@@ -1,4 +1,5 @@
 import createPersistedState from 'vuex-persistedstate'
+import router from '../../router'
 
 
 const state = {
@@ -45,10 +46,13 @@ const actions = {
 
     goToCart({ commit }) {
         const my_cart = localStorage.getItem('cart')
+        console.log(my_cart)
         let cartItems = []
         if (my_cart) {
             cartItems = JSON.parse(my_cart)
+            console.log(cartItems)
             commit('SET_CART', cartItems)
+            router.push({ name: 'cart' });
         }
     }
 

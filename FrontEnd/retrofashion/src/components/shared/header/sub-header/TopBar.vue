@@ -66,7 +66,7 @@ export default {
   methods: {
     goToCart() {
       console.log("go to Cart");
-      this.$router.push("/cart");
+      this.$store.dispatch('cart/goToCart')
     }
   }
 };

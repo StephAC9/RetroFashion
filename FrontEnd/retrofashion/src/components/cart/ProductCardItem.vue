@@ -2,27 +2,25 @@
   <div class="cart-product-item">
     <div class="item-image">
       <img
-        style="width: 100%; height:100%;"
-        :src="require(`../../../../Images/${product.productImages[0]}`)"
+        style="width: 100%; height:50%;"
+        :src="require(`../../../../Images/${item.imageUrl}`)"
         alt="img"
       />
     </div>
-    <div class="item-title item-margin-top">
-      <p>{{product.productName}}</p>
-      <p>SIZE: {{product.productSize}}</p>
+    <div class="item-title" style="padding:5px">
+      <p style="text-decoration:underline" @click="goToProductView">{{item.productName}}</p>
+      <span>SIZE: {{item.productSize}}</span>
     </div>
-    <div class="item-quantity item-margin-top">
+    <div class="item-quantity">
       <div style="width: 100px; margin: 0 auto;  margin-top: 20px;  ">
         <span class="value" @click="increment">+</span>
-        <span class="value">{{count}}</span>
+        <span class="value">{{item.quantity}}</span>
         <span class="value" @click="decrement">-</span>
       </div>
     </div>
-    <div class="item-price item-margin-top">
-      <p class="item-price-2">{{ productSubtotal(product.productPrice, count) }} SEK</p>
-
-      <div class="item-remove">
-        <span>X</span>
+    <div class="item-price">
+      <p class="item-price-2">{{ productSubtotal(item.price, item.quantity) }} SEK</p>
+      <div class="item-remove">X
       </div>
     </div>
   </div>
@@ -32,6 +30,7 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "product-cart-item",
+  props:['item'],
   data() {
     return {
       product: null,
@@ -39,7 +38,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("women", ["products"])
+    ...mapGetters("women", ["products"]),
   },
   watch: {
     products(value) {
@@ -49,27 +48,25 @@ export default {
       }
     }
   },
-  created() {
-    console.log("created");
-    console.log(this.products);
+  mounted(){
+console.log(this.item)
   },
-  mounted() {
-    console.log("mounted");
-    this.product = this.products[4];
-    console.log(this.product.productName);
-    console.log(this.product.productSize);
-  },
+ 
 
   methods: {
     increment() {
-      this.count += 1;
+      this.item.quantity += 1;
     },
     decrement() {
-      if (this.count === 0) return;
-      this.count -= 1;
+      if (this.item.quantity === 0) return;
+      this.item.quantity -= 1;
     },
     productSubtotal(price, quantity) {
       return price * quantity;
+    },
+    goToProductView() {
+        console.log(this.products)
+        
     }
   }
 };
@@ -84,113 +81,57 @@ export default {
   margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
-
-  background: rgb(235, 231, 231);
-  padding: 4px;
+  background: rgb(252, 249, 249);
+  padding: 10px;
+  height: 110px;
+  position: relative;
 }
 .item-image {
   flex-basis: 15%;
   height: 180px;
   width: 180px;
+  min-width: 100px;
   padding: 3px;
   padding-right: 30px;
 }
 .item-title {
   flex-basis: 30%;
+  font-size: 8px;
+  height: 100%;
 }
 .item-quantity {
   flex-basis: 35%;
   height: 100%;
   justify-content: center;
-
   display: flex;
 }
 .item-price {
   flex-basis: 20%;
-  position: relative;
+  font-size: 14px;
 }
 p {
-  font-size: 16px;
+  font-size: 12px;
 }
 .btn-light1,
 .btn-light2,
 .value {
-  font-size: 18px;
+  font-size: 13px;
   flex-basis: 33%;
   margin: 10px;
+  cursor: pointer;
 }
 .value:focus {
   outline: none;
 }
 .item-remove {
   position: absolute;
-  left: 150px;
-  top: -40px;
+  left: 550px;
+  top:20px;
   font-weight: bold;
+  cursor: pointer;
 }
 .item-price-2 {
   margin-top: 18px;
-  font-size: 24px;
+  font-size: 14px;
 }
-
-/* 
-
-
-.delete-btn {
-  border-radius: 50%;
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background: white;
-  font-size: 15px;
-  font-weight: bold;
-  text-align: center;
-  font-size: 7px;
-  padding-top: 8px;
-  z-index: 2;
-  top: -12px;
-  right: 15px;
-}
-
-.cart-product-item {
-  display: flex;
-  height: 180px;
-  width: auto;
-  margin-top: 100px;
-  margin-bottom: 200px;
-  padding: 10px;
-}
-
-
-.item {
-  padding: 20px 30px;
-  height: 120px;
-  display: flex;
-}
-.sampleMini {
-  margin-top: 65px;
-  width: 83px;
-  padding-top: 8px;
-  text-align: center;
-  font-size: 16px;
-  color: #43484d;
-  font-weight: 300;
-}
-
-.title {
-  height: 60px;
-  border-bottom: 1px solid #e1e8ee;
-  padding: 20px 30px;
-  color: #5e6977;
-  font-size: 18px;
-  font-weight: 400;
-}
-button .fa fa-window-minimize sign {
-  margin-bottom: 25px;
-}
-.sign {
-  margin: 10px;
-}
-@media (max-width: 650px) {
-} */
 </style>
