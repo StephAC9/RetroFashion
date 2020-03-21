@@ -4,10 +4,20 @@ import router from '../../router'
 
 const state = {
     cart: [],
-    confirmation: ''
+    confirmation: '',
+    sum: 0,
+    count: 0
 }
 const getters = {
     cart: state => state.cart,
+    sum: state => {
+        let total = 0
+        state.cart.forEach(element => {
+            total += element.price * element.quantity
+        });
+        return total
+    },
+    count: state => state.cart.length
 }
 const actions = {
 
@@ -54,7 +64,55 @@ const actions = {
             commit('SET_CART', cartItems)
             router.push({ name: 'cart' });
         }
-    }
+    },
+
+
+    quantityIncrement({ commit }, martin) {
+        console.log(martin.item)
+        const ibrahim = localStorage.getItem('cart')
+        const p = JSON.parse(ibrahim);
+        console.log(p)
+
+
+        for (var i in p) {
+            if (p[i] === martin.item) {
+                console.log('match')
+                p[i].quantity++
+                    break; //Stop this loop, we found it!
+            }
+        }
+        localStorage.setItem('cart', JSON.stringify(p))
+        console.log(JSON.parse(localStorage.getItem('cart')))
+        commit('CONFIRMATION')
+
+
+
+
+    },
+    quantityDecrement({ commit }, kubrom) {
+        console.log(kubrom.item)
+        const ngaha = localStorage.getItem('cart')
+        const p2 = JSON.parse(ngaha);
+        console.log(p2)
+
+
+        for (var i in p2) {
+            if (p2[i] === kubrom.item) {
+                console.log('match')
+                p2[i].quantity--
+                    break; //Stop this loop, we found it!
+            }
+        }
+        localStorage.setItem('cart', JSON.stringify(p2))
+        console.log(JSON.parse(localStorage.getItem('cart')))
+        commit('CONFIRMATION')
+
+
+
+
+    },
+
+
 
 }
 const mutations = {

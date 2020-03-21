@@ -15,6 +15,7 @@
     "bootstrap-vue": "^2.5.0",
     "core-js": "^3.6.4",
     "hooper": "^0.3.4",
+    "v": "^0.3.0",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-persistent-state": "^0.2.1",

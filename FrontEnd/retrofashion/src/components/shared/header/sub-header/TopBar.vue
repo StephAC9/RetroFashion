@@ -40,9 +40,9 @@
               </button>
               <popover layout="cart"></popover>
               <div style="width: 100%;margin-left:6px; text-align:start" class="desciption">Cart</div>
-              <div v-show="items" class="items-count-notification">
-                <p>
-                  <strong>100</strong>
+              <div v-if="count > 0" class="items-count-notification">
+                <p style="color:white;">
+                  <strong>{{count}}</strong>
                 </p>
               </div>
             </div>
@@ -54,22 +54,32 @@
 </template>
 <script>
 import Popover from "../../../popover/Popover";
+import {mapGetters} from 'vuex'
 export default {
   name: "top-bar",
   components: {
     Popover
   },
   data: () => ({
-    items: true,
+    items: false,
     placement: "bottomleft"
   }),
+  computed:{
+    ...mapGetters('cart',['count'])
+  },
+
+  mounted(){
+    console.log(this.count)
+  },
   methods: {
     goToCart() {
       console.log("go to Cart");
       this.$store.dispatch('cart/goToCart')
     }
-  }
-};
+  },
+
+}
+
 </script>
 <style scoped>
 @import "../../../../assets/css/header-style.css";

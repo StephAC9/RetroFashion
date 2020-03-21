@@ -1,5 +1,5 @@
 <template>
-  <div class="Payment">
+  <div class="payment">
     <PaymentCustomerDetails></PaymentCustomerDetails>
   </div>
 </template>
@@ -11,4 +11,8 @@ export default {
 };
 </script>
 <style scoped>
+.payment{
+  padding: 30px;
+  margin-bottom: 100px;
+}
 </style>

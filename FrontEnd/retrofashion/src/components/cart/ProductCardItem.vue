@@ -55,11 +55,16 @@ console.log(this.item)
 
   methods: {
     increment() {
-      this.item.quantity += 1;
+      this.item.quantity += 1
+      console.log(this.item)
+      this.$store.dispatch('cart/quantityIncrement',{item:this.item})
+
     },
     decrement() {
-      if (this.item.quantity === 0) return;
+      if (this.item.quantity > 0)
       this.item.quantity -= 1;
+      console.log(this.item)
+       this.$store.dispatch('cart/quantityDecrement',{item:this.item})
     },
     productSubtotal(price, quantity) {
       return price * quantity;
@@ -68,7 +73,10 @@ console.log(this.item)
         console.log(this.products)
         
     }
-  }
+  },
+  destroyed(){
+    this.$store.dispatch('cart/sendToCart',{cartItem:this.item})
+  },
 };
 </script>
 

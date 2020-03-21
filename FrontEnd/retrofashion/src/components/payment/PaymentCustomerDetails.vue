@@ -269,7 +269,7 @@ label {
 }
 
 .btn {
-  background-color: #0d0d11;
+  background-color: rgb(247, 73, 125);
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -281,7 +281,8 @@ label {
 }
 
 .btn:hover {
-  background-color: #df3721;
+  background-color: rgb(248, 85, 134);
+  color: white
 }
 
 a {

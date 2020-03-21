@@ -8,7 +8,7 @@
           <thead class="thead-dark">
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Product</th>
+              <th scope="col">Product ghfhjfgjgkjk</th>
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Delete</th>
@@ -61,13 +61,13 @@
             };
         },
         computed: {
-            ...mapState([
-                "cart"
-            ]),
-            ...mapGetters([
-                "cartSize",
-                "cartTotalAmount"
-            ])
+            ...mapGetters('cart',['sum']),
+
+        },
+        created(){
+            console.log('am here-----')
+            console.log(this.sum)
+
         },
         methods: {
             addToCart(id) {

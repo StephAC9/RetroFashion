@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="cart-checkout">
-      <Checkout></Checkout>
+      <Checkout :sum="sum"></Checkout>
     </div>
   </div>
 </template>
@@ -19,11 +19,14 @@ export default {
   name:'Cart',
   components: { ProductCardItem, Checkout },
   computed:{
-    ...mapGetters('cart',['cart'])
+    ...mapGetters('cart',['cart']),
+    ...mapGetters('cart',['sum']),
+
   },
 
   mounted(){
     console.log(this.cart)
+    console.log(this.sum)
   }
 
 };
