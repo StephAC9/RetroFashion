@@ -1,33 +1,32 @@
 <template>
   <div class="checkout">
     <div class="container mt-15 pt-15">
-
       <h2 class="py-4">YOUR ORDER</h2>
       <div class="row">
         <div class="container mt-15 pt-15">
           <h3 class="ordertag">Order Price</h3>
-          <label for="price" id="orderlabel"
-            ><i class="fa fa-price"></i> 300 SEK
+          <label for="price" id="orderlabel">
+            <i class="fa fa-price"></i> {{sum}} SEK
           </label>
         </div>
       </div>
       <div class="row">
         <div class="container mt-15 pt-15">
           <h3 class="deliverytag">Delivery</h3>
-          <label for="price" id="deliverylabel"
-            ><i class="fa fa-price"></i> 50 SEK
+          <label for="price" id="deliverylabel">
+            <i class="fa fa-price"></i> 50 SEK
           </label>
         </div>
       </div>
       <div class="row">
         <div class="container mt-15 pt-15">
           <h3 class="totaltag">TOTAL PRICE</h3>
-          <label for="price" id="totallabel"
-            ><i class="fa fa-price"></i> 350 SEK
+          <label for="price" id="totallabel">
+            <i class="fa fa-price"></i> {{sum}} SEK
           </label>
         </div>
       </div>
-      <button class="btn" @click="checkout">CheckOut</button>
+      <button class="btn btn-primary" @click="goToPayment">CheckOut</button>
 
       <div class="icon-container">
         <i class="fa fa-cc-visa" style="color:navy;"></i>
@@ -37,24 +36,30 @@
       </div>
       <div class="row">
         <div class="container mt-10 pt-10">
-          <label
-            ><i class="fa fa-check-square-o"></i> Free delievery for purchase
-            over 999 SEK</label
-          ><br />
-          <label
-            ><i class="fa fa-check-square-o"></i> Customer Service 24H
-            Available</label
-          ><br />
-          <label
-            ><i class="fa fa-check-square-o"></i> Quick delievery in 1-5
-            days</label
-          ><br />
-          <label
-            ><i class="fa fa-check-square-o"></i> Free return with 14
-            days</label
-          ><br />
+          <label>
+            <i class="fa fa-check-square-o"></i> Free delievery for purchase
+            over 999 SEK
+          </label>
+          <br />
+          <label>
+            <i class="fa fa-check-square-o"></i> Customer Service 24H
+            Available
+          </label>
+          <br />
+          <label>
+            <i class="fa fa-check-square-o"></i> Quick delievery in 1-5
+            days
+          </label>
+          <br />
+          <label>
+            <i class="fa fa-check-square-o"></i> Free return with 14
+            days
+          </label>
+          <br />
 
-          <label><i class="fa fa-check-square-o"></i> Customer Review </label>
+          <label>
+            <i class="fa fa-check-square-o"></i> Customer Review
+          </label>
         </div>
       </div>
     </div>
@@ -64,13 +69,19 @@
 // import { Card, createToken } from "vue-stripe-elements-plus";
 
 export default {
+  props:['sum'],
   methods: {
-    checkout() {
+    goToPayment() {
       // $(’#miniCart’).modal(’hide’)
-      this.$router.push("/payment");
+      this.$router.push("/payment-step-1");
     }
+  },
+  finalTotal(){
+
   }
+  
 };
+
 </script>
 
 <style scoped>

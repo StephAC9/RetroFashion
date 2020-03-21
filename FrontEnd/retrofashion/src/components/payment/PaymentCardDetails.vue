@@ -1,12 +1,11 @@
 <template>
-  <div class="PaymentCardDetails">
-  </div>
+  <div class="PaymentCardDetails"></div>
 </template>
 <script>
 export default {
-    name:'PaymentCardDetails'
-}
+  name: "PaymentCardDetails"
+};
 </script>
-<style scoped>
 
+<style scoped>
 </style>
